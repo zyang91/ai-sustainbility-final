@@ -84,13 +84,47 @@ training mode: 24 % character similarity stock, 87 % with the pooling change,
 100 % with BatchNorm frozen as well. The PaddleOCR checkout itself is not
 edited.
 
-### Status
+### Result (2026-11-15)
 
-- Pretrained model on the 101 validation lines (line images, recognition
-  only): 95.0 % exact lines, 99.6 % character similarity.
-- CPU training on this Mac takes about 56 s per batch of 8, so training runs
-  on a Colab GPU with `finetune/colab_finetune.ipynb`. The notebook has not
-  been executed on Colab yet.
-- No fine-tuning result on human labels exists yet. Whether it helps is open.
-  Most remaining baseline errors on the benchmark are whole lines missed by
-  detection, which recognition fine-tuning cannot fix.
+Run on a Colab GPU with `finetune/colab_finetune.ipynb`: 209 training lines,
+20 epochs, learning rate 2e-5, batch 8, best checkpoint chosen on the 101
+validation lines.
+
+Validation line images, recognition only:
+
+| Model | Exact lines | Character similarity |
+|---|---|---|
+| Pretrained | 95.0 % (96 of 101) | 99.64 % |
+| Fine-tuned | 98.0 % (99 of 101) | 99.89 % |
+
+Full pipeline (detection + recognition) on the benchmark paragraphs,
+`python -m penn_ocr.evaluate`:
+
+| Partition | Paragraphs | Characters | Pretrained CER / WER | Fine-tuned CER / WER | Character errors |
+|---|---|---|---|---|---|
+| test | 33 | 12,203 | 0.63 % / 1.21 % | 0.62 % / 1.11 % | 77 vs 76 |
+| val | 20 | 5,711 | 1.24 % / 2.14 % | 1.21 % / 1.81 % | 71 vs 69 |
+| train | 39 | 11,587 | 0.24 % / 0.91 % | 0.16 % / 0.59 % | 28 vs 18 |
+
+Reading: on the held-out test partition the two models are tied. One
+character error out of 12,203 is far below the 0.7 % disagreement between
+two human typings, so it is not a measurable gain. On test the fine-tuned
+model changed 9 paragraphs: 5 better, 3 worse, 1 equal. The gain on the
+training partition is the model fitting lines it was trained on.
+
+The remaining test errors are dominated by text lines the detector misses
+(`1966_campus_dev_plan_ua`, about 5 % CER under both models), which
+recognition fine-tuning cannot change.
+
+Conclusion: fine-tuning the recognition model on 209 lines does not beat the
+pretrained baseline on held-out documents. Following the vision document,
+the pretrained PP-OCRv6 model stays the choice for full-corpus digitization.
+
+Caveat: the ground truth was checked against the pretrained model's output
+(see README, "Check mismatched lines"), which favours the pretrained model
+slightly.
+
+### Notes
+
+- CPU training on this Mac takes about 56 s per batch of 8; the Colab T4 run
+  took about 0.7 s per batch.

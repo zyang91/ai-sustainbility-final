@@ -8,6 +8,7 @@ PAGES = WORK / "pages"                    # orientation-corrected page images
 PAGE_OCR = WORK / "page_ocr"              # page-level PaddleOCR + layout output
 CROPS = WORK / "crops"                    # paragraph crops shown in the validator
 PREDICTIONS = WORK / "predictions"        # per-engine predictions on the crops
+CORPUS = WORK / "corpus"                  # full-corpus text (Vision 1.1 / 1.5 input)
 REC_DATASET = WORK / "rec_dataset"        # line-level export for fine-tuning
 
 ANNOTATION = ROOT / "annotation"          # tracked in git

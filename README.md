@@ -8,9 +8,10 @@ ground-truth stage.
 | Vision step | State |
 |---|---|
 | 1.1 Archive assembled, metadata recorded | done ([annotation/documents.csv](annotation/documents.csv)) |
-| 1.2 Open-source OCR baseline, fine-tuning set-up | baseline runs; fine-tuning waits for ground truth |
-| 1.3 Mini human validator, sampling, splits | built; transcription in progress |
-| 1.4 Benchmark incl. Claude | not started (`penn_ocr.evaluate` already scores any prediction file) |
+| 1.2 Open-source OCR baseline, fine-tuning | done; fine-tuning ties the pretrained model on test, so the pretrained model is used (`docs/ocr_models.md`) |
+| 1.3 Mini human validator, sampling, splits | done; 92 usable paragraphs, 14 double-keyed, mismatched lines checked |
+| 1.4 OCR benchmark | pretrained vs fine-tuned scored with CER/WER; secondary measures (dates, numbers, names) not done |
+| Full-corpus transcription | `penn_ocr.page_ocr --all` then `penn_ocr.corpus` -> `work/corpus/` |
 
 ## Set-up
 
@@ -38,6 +39,14 @@ Fine-tuning experiment, once enough train and val samples are typed:
     bash finetune/run_finetune.sh
     python -m penn_ocr.predict --engine paddle --rec-model-dir work/finetune/inference --name paddle_finetuned
     python -m penn_ocr.evaluate --split val
+
+Full-corpus transcription with the selected (pretrained) model:
+
+    python -m penn_ocr.page_ocr --all     # every page of the 17 scans, about 6 h on CPU, resumable
+    python -m penn_ocr.corpus             # paragraphs.jsonl + one .txt per document in work/corpus/
+
+The 2006-2018 plans are born-digital; `penn_ocr.corpus` reads their text
+layer directly instead of running OCR.
 
 Model versions, licenses and every training setting are in
 [docs/ocr_models.md](docs/ocr_models.md).
@@ -94,6 +103,5 @@ that residual overlap is a known limit of a small archive.
 - Every save appends to `annotation/transcriptions.jsonl`; nothing is
   overwritten, so the benchmark can be audited.
 
-Human transcriptions are the only ground truth. Model output, including
-Claude's in step 1.4, is always scored against them and never used as a
-reference.
+Human transcriptions are the only ground truth. Model output is always
+scored against them and never used as a reference.

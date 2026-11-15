@@ -23,8 +23,6 @@ flowchart TD
     G["Human-Verified Ground Truth<br/>Image + transcription + source/page metadata"]
     T["Training / Validation / Held-Out Test Split"]
     FT["Domain-Specific OCR Fine-Tuning<br/>Open-source pretrained weights + annotated training data"]
-    CL["Claude Vision Benchmark<br/>Transcribe the same held-out image crops"]
-    RC["Claude-Assisted OCR Correction<br/>Original crop + OCR text; proposed corrections"]
     EV["OCR Benchmark<br/>CER · WER · Dates/numbers/names · Error analysis"]
     SEL["Select and Document OCR Pipeline<br/>Human review for unresolved passages"]
     TXT["Structured Historical Text Corpus<br/>Document · Year · Draft/final · Page references"]
@@ -44,9 +42,6 @@ flowchart TD
     C --> FT
     C -->|"baseline predictions"| EV
     FT -->|"fine-tuned predictions"| EV
-    T -->|"same held-out images"| CL --> EV
-    FT --> RC --> EV
-    T -->|"same held-out images"| RC
     EV --> SEL
     SEL --> TXT
     B -->|"full archive"| SEL
@@ -57,7 +52,7 @@ flowchart TD
     IDX --> LLM --> APP --> QA
 ```
 
-*The human-verified test set remains separate from OCR fine-tuning and model selection. Claude's outputs are evaluated against human transcriptions; they are not treated as ground truth. The full archive is transcribed using the selected OCR workflow, while the benchmark uses a representative annotated subset.*
+*The human-verified test set remains separate from OCR fine-tuning and model selection. The full archive is transcribed using the selected OCR workflow, while the benchmark uses a representative annotated subset.*
 
 ## Part 1: Semantic Analysis of Penn's Historical Campus Master Plans
 
@@ -85,24 +80,22 @@ The human transcription interface will hide model predictions to avoid anchoring
 
 Samples will be selected across different documents, historical periods, font and layout types, and scan-quality levels. The resulting dataset will be divided into **training**, **validation**, and **held-out test** partitions. To reduce leakage, document- or page-level separation will be prioritized over random splitting of adjacent paragraphs from the same page.
 
-These verified human transcriptions—not Claude-generated text—will provide the ground-truth reference for OCR benchmarking.
+These verified human transcriptions will provide the ground-truth reference for OCR benchmarking.
 
-### 1.4 OCR Benchmark and Claude-Assisted Validation
+### 1.4 OCR Benchmark
 
-The project will compare four OCR configurations on the same held-out historical image samples:
+The project will compare two OCR configurations on the same held-out historical image samples:
 
 | Configuration | Input | Purpose |
 |---|---|---|
 | Pretrained PaddleOCR | Original text-region image | Open-source baseline |
 | Fine-tuned PaddleOCR | Same text-region image | Measure gains from historical-domain adaptation |
-| Claude Vision, direct transcription | Same text-region image | Compare a capable multimodal model against OCR models |
-| PaddleOCR + Claude review/correction | Original image and PaddleOCR transcription | Test whether AI-assisted correction reduces transcription errors |
 
 The central performance measures will be **Character Error Rate (CER)** and **Word Error Rate (WER)**, calculated against manually verified ground-truth text. Secondary measures will examine exact matches for dates, numerical quantities (for example, parking-space counts), institutional names, and place names. OCR errors that affect historical interpretation will be documented separately.
 
-Claude will play two distinct roles: an **independent transcription benchmark** when given the image alone, and an **assisted reviewer** when given both an image and another model's OCR output. It will not determine the correct text merely by asserting that a transcription is accurate. Candidate corrections will be checked against the page images, and the held-out test set will not be used to fine-tune the OCR model.
+The held-out test set will not be used to fine-tune the OCR model.
 
-The experiment will report both improvements and failures. It will also consider processing cost, speed, and archival reproducibility when selecting a workflow for the full corpus. Before transferring scanned archival material to a hosted model, the project will confirm that such use is permitted.
+The experiment will report both improvements and failures. It will also consider processing cost, speed, and archival reproducibility when selecting a workflow for the full corpus.
 
 ### 1.5 Transformer-Based Semantic Analysis
 
@@ -159,7 +152,7 @@ Evaluation will focus on whether the retrieval system finds relevant passages, w
 
 1. **Digitized Historical Planning Corpus:** Cleaned machine-readable text linked to scanned pages, with document metadata and draft/final distinctions.
 2. **Mini Human Validator:** A small transcription interface producing human-verified samples and an auditable benchmark dataset.
-3. **OCR Model Benchmark:** Results comparing an open-source OCR baseline, a fine-tuned OCR model, direct Claude Vision transcription, and Claude-assisted OCR correction.
+3. **OCR Model Benchmark:** Results comparing an open-source OCR baseline, and a fine-tuned OCR model.
 4. **Semantic Analysis:** Transformer embeddings, document similarity analysis, historical-theme comparisons, and visualizations.
 5. **Interactive AI Research Assistant:** A local RAG chatbot supporting natural-language queries, cross-document comparison, and page-level source citations.
 6. **Reproducible Documentation:** A record of preprocessing, annotation procedures, train/validation/test partitions, OCR evaluation, corpus construction, and chatbot evaluation.

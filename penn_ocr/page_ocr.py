@@ -5,7 +5,12 @@ Outputs per page:
   work/pages/<doc_id>/p0007.png      orientation-corrected page image (200 dpi)
   work/page_ocr/<doc_id>/p0007.json  text lines, confidences, layout blocks
 
-    python -m penn_ocr.page_ocr --pages-per-doc 10
+    python -m penn_ocr.page_ocr --pages-per-doc 10     # the benchmark sample
+    python -m penn_ocr.page_ocr --all                  # every page (full corpus)
+
+`--all` writes only the JSON (page images for 1,500 pages would take several
+GB and can be re-rendered). Both modes skip pages that already have a JSON,
+so an interrupted run resumes where it stopped.
 """
 import argparse
 import json
@@ -40,6 +45,7 @@ def render(pdf, page_no: int) -> np.ndarray:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--pages-per-doc", type=int, default=10)
+    ap.add_argument("--all", action="store_true", help="every content page, JSON only")
     ap.add_argument("--docs", nargs="*", help="limit to these doc_ids")
     args = ap.parse_args()
 
@@ -47,7 +53,9 @@ def main():
             and (not args.docs or d["doc_id"] in args.docs)]
     todo = []
     for d in docs:
-        for p in sample_pages(d, args.pages_per_doc):
+        pages = range(d["first_content_page"], d["n_pages"] + 1) if args.all \
+            else sample_pages(d, args.pages_per_doc)
+        for p in pages:
             out = PAGE_OCR / d["doc_id"] / f"p{p:04d}.json"
             if not out.exists():
                 todo.append((d, p, out))
@@ -64,9 +72,10 @@ def main():
         blocks = [dict(label=b["label"], score=round(float(b["score"]), 3),
                        box=[int(v) for v in b["coordinate"]])
                   for b in layout.predict(upright)[0]["boxes"]]
-        img_path = PAGES / d["doc_id"] / f"p{p:04d}.png"
-        img_path.parent.mkdir(parents=True, exist_ok=True)
-        cv2.imwrite(str(img_path), upright)
+        if not args.all:
+            img_path = PAGES / d["doc_id"] / f"p{p:04d}.png"
+            img_path.parent.mkdir(parents=True, exist_ok=True)
+            cv2.imwrite(str(img_path), upright)
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(dict(
             doc_id=d["doc_id"], page=p, dpi=DPI,
