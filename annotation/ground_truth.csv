@@ -1,39 +1,40 @@
 sample_id,doc_id,year,status,page,split,text,n_lines_typed,n_lines_detected,flags,notes,annotator,reference_pass,second_pass_cer,saved_at
 1948_physical_dev_report_p0005_b05,1948_physical_dev_report,1948,final,5,train,"After studying these plans, the various members of the Architects Committee
-communicated with the Chairman expressing their points of view, all of which 2
+communicated with the Chairman expressing their points of view, all of which
 were given consideration by him and Grant Simon in the studies that were being
 made at that time. A third meeting of the Architects Committee was held on May
 31st, convening and adjourning at the same time as on previous occasions. By
-elements of the problems and discussion was, consequently, confined mostly to
+this time the architects were all pretty much in accord in regard to the major
+elements of the problem and discussion was, consequently, confined mostly to
 group arrangements. After this meeting, a plan incorporating the conclusions
 reached was developed by Grant Simon and photostatic copies sent to all members
 of the Architects Committee. This plan met with general approval with a few
-minor suggestions.",10,11,,,,first,,2026-11-15T00:48:51+00:00
+minor suggestions.",11,11,,,,final,,2026-11-15T18:56:34+00:00
 1961_dev_plan_p0016_b05,1961_dev_plan,1961,final,16,train,"(a) By 1970, to house every under-
 graduate in a unit that is either
 owned or supervised by the Uni-
-versity; and thereafter, to
+versity¹; and, thereafter, to
 maintain this housing standard
-and requirement.",6,6,,,,first,,2026-11-15T00:49:59+00:00
-1961_dev_plan_taubin_p0004_b00,1961_dev_plan_taubin,1961,draft,4,train,"The University of Pennsylvania Development plan,
+and requirement.",6,6,,,,final,0.0114,2026-11-15T18:57:15+00:00
+1961_dev_plan_taubin_p0004_b00,1961_dev_plan_taubin,1961,draft,4,train,"The University of Pennsylvania Development Plan,
 as presented in this statement and attachments
 which can be viewed in the University Planning
-office, was approved by the Trustees on May 19,
+Office, was approved by the Trustees on May 19,
 1961. The Development Plan was approved by the
 Philadelphia City Planning Commission on August
-4.1961 and November 3, 1961",7,7,,,,first,,2026-11-15T00:51:50+00:00
+4.1961 and November 3, 1961",7,7,,,,final,,2026-11-15T18:57:45+00:00
 1963_dev_plan_p0006_b01,1963_dev_plan,1963,final,6,val,"On January 9, 1948 the Philadelphia City Planning Com-
 mission certified the ""University Redevelopment Area""
 to be an official part of the City's urban renewal
-program",4,4,,,,first,,2026-11-15T00:52:57+00:00
+program.",4,4,,,,final,,2026-11-15T18:58:02+00:00
 1963_dev_plan_taubin_p0018_b03,1963_dev_plan_taubin,1963,final,18,val,"An athletic facility is proposed for the
-block bounded by 37/walnut/38/Sansom Streets
+block bounded by 37/Walnut/38/Sansom Streets
 to serve the needs of the undergraduate men
 who will be housed in the western area of the
-campus. This will also reinforce the community
+Campus. This will also reinforce the community
 related facilities that exist and are proposed
 for the adjoining block on the north which is
-bounded by 37/Sansom/38/Chestnut Streets.",8,8,,,,first,,2026-11-15T00:54:58+00:00
+bounded by 37/Sansom/38/Chestnut Streets.",8,8,,,,final,,2026-11-15T18:58:20+00:00
 1966_campus_dev_plan_p0008_b06,1966_campus_dev_plan,1966,final,8,test,"The planning dealt with here is concerned with the buildings and
 spaces, both open and enclosed, that are required by the Univer-
 sity to accomplish its expressed academic and professional goals.
@@ -42,8 +43,8 @@ the several levels of plan preparation and implementation: the
 formulation of University objectives and policy, fiscal and admin-
 istrative planning, planning for the long-range development of
 the physical environment, and identification and use of the means
-for implementation",9,9,,,,first,,2026-11-15T00:59:07+00:00
-1966_campus_dev_plan_ua_p0035_b01,1966_campus_dev_plan_ua,1966,final,35,test,"Although the overall campus gross floor area-site area ratio for
+for implementation.",9,9,,,,final,,2026-11-15T18:58:34+00:00
+1966_campus_dev_plan_ua_p0035_b01,1966_campus_dev_plan_ua,1966,final,35,test,"Although the overall Campus gross floor area-site area ratio for
 the University is 150 percent, the application of this standard
 on a block by block and site by site basis will vary. The same
 is true for the application of the building coverage standard of
@@ -52,7 +53,7 @@ sity intent or outside direction, be carried out at a lower den-
 sity than that permitted by the standards. On others, the site
 location or the nature of the project may warrant an intensity
 of development that is greater than that permitted by either or
-both standards. It is the duty of the University Planning",10,10,,,,first,,2026-11-15T01:02:41+00:00
+both standards. It is the duty of the University Planning",10,10,,,,final,,2026-11-15T18:58:36+00:00
 1977_landscape_dev_plan_p0054_b01,1977_landscape_dev_plan,1977,final,54,train,"This preliminary social survey must not, however, in any sense
 be considered a definitive statement of the central and
 diverse concerns of the community with regard to their campus.
@@ -62,13 +63,13 @@ that a rigorous social survey be carried out, under the
 supervision of a qualified social scientist and in collabora-
 tion with the planning and design staff. The survey should be
 based on a large sample to include the widest range of
-students, faculty, staff, and other users",10,10,,,,first,,2026-11-15T01:06:53+00:00
+students, faculty, staff, and other users.",10,10,,,,final,,2026-11-15T18:58:39+00:00
 1978_framework_campus_planning_p0042_b02,1978_framework_campus_planning,1978,draft,42,train,"Pennsylvania's single unified campus promotes a sense of community, fosters
 cooperative ventures among different disciplines, and encourages personal inter-
 action between faculty and students. In newly completed Levy Park, the refur-
 bished College Green, we have acquired an important visual symbol of this uni-
 fying spirit which molds our institutional identity. Yet the campus faces out
-as well as in, retaining a distinctive urban character. This cosmpolitan",6,6,,,,first,,2026-11-15T01:14:57+00:00
+as well as in, retaining a distinctive urban character. This cosmopolitan",6,6,,,,final,,2026-11-15T18:58:48+00:00
 1979_campus_dev_plan_interim_p0064_b06,1979_campus_dev_plan_interim,1979,draft,64,train,"We developed this third category irregardless of whether the University
 currently holds title to these parcels. It seemed useful to pursue this third
 category despite the issue of ownership. It offered us an opportunity to explore
@@ -85,18 +86,18 @@ these fields, with all of their problems of access,
 until a future time when other sites become avail-
 able. Though this is not a likely prospect, it is
 a natural component of an urban university, and
-must be accepted",8,8,,,,first,,2026-11-15T01:22:57+00:00
+must be accepted.",8,8,,,,final,0.0166,2026-11-15T18:59:45+00:00
 1983_campus_dev_plan_reports_p0029_b00,1983_campus_dev_plan_reports,1984,final,29,train,"By 1894 two more buildings were built, this time facing 34th
-street: The Smith Chemistry Laboratory (originally the Institute
+Street: The Smith Chemistry Laboratory (originally the Institute
 of Hygiene) was built in 1892 and designed by Collins and Auten-
 reith Architects; and the John Harrison Laboratory of Chemistry
-was built in 1894. The Architects were Cope and Stewardson who
+was built in 1894. The architects were Cope and Stewardson who
 were closely associated with Penn and the development of its
-campus.",7,7,,,,first,,2026-11-15T01:27:59+00:00
-1987_campus_master_plan_draft_p0067_b13,1987_campus_master_plan_draft,1987,draft,67,train,"4. To the West lies a large residential area made up to a number of
+Campus.",7,7,,,,final,,2026-11-15T18:59:59+00:00
+1987_campus_master_plan_draft_p0067_b13,1987_campus_master_plan_draft,1987,draft,67,train,"4. To the West lies a large residential area made up of a number of
 neighborhoods and communities. Members of the Penn community own
 and rent thousands of units in this area, and though it remains fiercely
-independent of the University, it is dominated by Penn's presence.",4,4,,,,first,,2026-11-15T01:31:59+00:00
+independent of the University, it is dominated by Penn's presence.",4,4,,,,final,,2026-11-15T19:00:09+00:00
 1992_master_land_use_plan_p0027_b07,1992_master_land_use_plan,1992,draft,27,train,"The Social Sciences area between 38th and Walnut Streets and Locust Walk
 will accommodate the Graduate School of Education, the School of Social Work
 and some SAS departments now there, but in new buildings on a reconfigured
@@ -108,31 +109,31 @@ dramatic and performance arts.",7,7,,,,first,,2026-11-15T01:38:38+00:00
 provide a rich assortment of goods and services. The commercial zones should be very closely
 identified with campus. They should be planned as two sided, pedestrian oriented streets with
 lots of variety, completion, innovation and character, all closely related to the campus core,
-campus residential facilities and neighboring institutes and residential communities.",5,5,,,,first,,2026-11-15T01:42:26+00:00
+campus residential facilities and neighboring institutions and residential communities.",5,5,,,,final,,2026-11-15T19:00:14+00:00
 1998_campus_dev_plan_brief_p0031_b02,1998_campus_dev_plan_brief,1998,final,31,train,"tion of outdoor works of art. From monumental
 to modest, from antique to contemporary, from
 abstract to representational, the collection is valu-
-able and is well displayed",4,4,,,,first,,2026-11-15T01:43:21+00:00
+able and is well displayed.",4,4,,,,final,,2026-11-15T19:00:20+00:00
 1948_physical_dev_report_p0009_b02,1948_physical_dev_report,1948,final,9,test,"It is proposed to open up a greensward from the present Law School Building
 to Walnut Street, so that it will be tied in with the Campus and so that this
 beautiful building will be seen to advantage. The proposed enlargement will ex-
 tend to the west on land now occupied by tennis courts. The Law School Dormi-
 tories will overlook the greensward and will form a screen to the commercial
 development which is rapidly taking place on Walnut Street.",6,6,,,,first,,2026-11-15T01:47:30+00:00
-1961_dev_plan_taubin_p0019_b05,1961_dev_plan_taubin,1961,draft,19,train,"(i) outdoor area to be shared by two
+1961_dev_plan_taubin_p0019_b05,1961_dev_plan_taubin,1961,draft,19,train,"(i) Outdoor area to be shared by two
 houses, wherever possible, for
 intramural athletic programs and
-for free play",4,4,,,,first,,2026-11-15T01:50:11+00:00
-1963_dev_plan_p0013_b05,1963_dev_plan,1963,final,13,val,"The plan maintains and extends that superblock
-pattern established by the Trustees' plan of
-1948.",3,3,,,,first,,2026-11-15T01:50:57+00:00
+for free play.",4,4,,,,final,,2026-11-15T19:00:23+00:00
+1963_dev_plan_p0013_b05,1963_dev_plan,1963,final,13,val,"The Plan maintains and extends the superblock
+pattern established by the Trustees' Plan of
+1948.",3,3,,,,final,,2026-11-15T19:00:31+00:00
 1963_dev_plan_taubin_p0003_b00,1963_dev_plan_taubin,1963,final,3,val,"The following report has been prepared for presentation to the
 Philadelphia City Planning Commission and the Philadelphia
 Redevelopment Authority.",3,3,,,,first,,2026-11-15T01:52:16+00:00
 1966_campus_dev_plan_p0037_b06,1966_campus_dev_plan,1966,final,37,test,"2. The location of existing and proposed community
 facilities and open spaces; and the manner in which
 the University's program requirements permits the
-use of its facilities by the community",4,4,,,,first,,2026-11-15T01:53:11+00:00
+use of its facilities by the community.",4,4,,,,final,,2026-11-15T19:00:40+00:00
 1966_campus_dev_plan_ua_p0044_b06,1966_campus_dev_plan_ua,1966,final,44,test,"4. Restudying the transportation facilities serving
 the Campus, including the private motor vehicle
 and its off-street parking requirements.",3,3,,,,first,,2026-11-15T01:53:56+00:00
@@ -146,20 +147,20 @@ the current context of higher education in the United States: the declining
 pool of potential undergraduates, the problems of labor-intensive endeavors
 caught in an inflationary spiral , and the nature of university planning in an
 age of austerity. Here he cautioned",10,10,,,,first,,2026-11-15T01:59:44+00:00
-1979_campus_dev_plan_interim_p0027_b01,1979_campus_dev_plan_interim,1979,draft,27,test,"a. problems connected to two kinds of operational difficulties: First,
+1979_campus_dev_plan_interim_p0027_b01,1979_campus_dev_plan_interim,1979,draft,27,test,"a. Problems connected to two kinds of operational difficulties: First,
 physical proximities between different activities or functions on the
 campus that do not reflect current campus needs; second, obstructions
 to easy circulation that occur at particular campus locations and con-
-necting Philadelphia blocks;",5,5,,,,first,,2026-11-15T02:03:33+00:00
+necting Philadelphia blocks;",5,5,,,,final,,2026-11-15T19:00:53+00:00
 1981_campus_dev_plan_reports_p0113_b06,1981_campus_dev_plan_reports,1982,final,113,test,"The site between 36th and 37th Street, on the
 other hand, is the most visible and easily found
-visitors' parking area on Campus for those
+visitors' parking area on the Campus for those
 destined to the central academic and administra-
 tive offices - College Hall, Logan Hall and the
 Franklin Building. It is across the street from
-the Annenberg Center for the performing Arts and
+the Annenberg Center for the Performing Arts and
 the Faculty Club. Loss of this parking area
-will more dramatically affect orientation and arrival",9,9,,,,first,,2026-11-15T02:05:55+00:00
+will more dramatically affect orientation and arrival",9,9,,,,final,,2026-11-15T19:01:07+00:00
 1982_campus_dev_plan_reports_p0063_b02,1982_campus_dev_plan_reports,1983,final,63,test,"Again, these commercial centers can be in any
 combination of clusters of shops along a street, in
 a mall, or around an intersection. The centers are
@@ -172,12 +173,12 @@ ally be grouped into to three types of action.",3,3,,,,first,,2026-11-15T02:12:3
 1987_campus_master_plan_draft_p0026_b06,1987_campus_master_plan_draft,1987,draft,26,test,"2. The Plan for Open Space should accommodate specific functions within the existing
 and proposed nodes of activity on the campus, recognizing the importance of open space in
 this densely developed urban campus and the need for its intensive use.",3,3,,,,first,,2026-11-15T02:16:57+00:00
-1992_master_land_use_plan_p0025_b04,1992_master_land_use_plan,1992,draft,25,test,"- The west side of 40th Street between Walnut and Spruce Streets. Existing
+1992_master_land_use_plan_p0025_b04,1992_master_land_use_plan,1992,draft,25,test,"• The west side of 40th Street between Walnut and Spruce Streets. Existing
 retail here will be replaced with mixed-use development that includes retail,
 academic and/or administrative uses. This segment of 40th Street, which passes
 through the Penn campus, is part of a larger retail pattern that starts at Girard
 Avenue and continues intermittently to Woodland Avenue, serving the
-University community and some adjacent neighborhoods.",6,6,,,,first,,2026-11-15T02:20:41+00:00
+University community and some adjacent neighborhoods.",6,6,,,,final,,2026-11-15T19:01:10+00:00
 1998_campus_dev_master_plan_p0006_b01,1998_campus_dev_master_plan,1998,draft,6,test,"To the south and west of campus, as well as to the north, are neighborhoods:
 University City, Powelton Village, West Philadelphia, and Southwest Philadelphia. These
 neighborhoods house many important institutions and many residences. They offer an eclectic
@@ -194,33 +195,33 @@ to the Medical School.",4,4,,,,first,,2026-11-15T02:54:03+00:00
 1961_dev_plan_p0016_b04,1961_dev_plan,1961,final,16,train,"(1) Among the objectives of the Develop-
 ment Plan for undergraduate student
 housing are:",3,3,,,,first,,2026-11-15T02:54:38+00:00
-1961_dev_plan_taubin_p0041_b02,1961_dev_plan_taubin,1961,draft,41,train,"The plan recognizes and establishes the prin-
+1961_dev_plan_taubin_p0041_b02,1961_dev_plan_taubin,1961,draft,41,train,"The Plan recognizes and establishes the prin-
 cipal entrances and exits to the University
-Area. This consideration is among the more
+Area.1 This consideration is among the more
 difficult because of the fact that the Penn-
 sylvania Campus lies astride a number of major
-arterial routes.",6,6,,,,first,,2026-11-15T02:58:02+00:00
-1963_dev_plan_p0009_b03,1963_dev_plan,1963,final,9,val,"The plan provides for a pedestrian oriented
+arterial routes.",6,6,,,,final,,2026-11-15T19:01:19+00:00
+1963_dev_plan_p0009_b03,1963_dev_plan,1963,final,9,val,"The Plan provides for a pedestrian oriented
 Campus and, within the academic area, seeks
-to maintain reasonable walking distances.",3,3,,,,first,,2026-11-15T02:58:51+00:00
+to maintain reasonable walking distances.",3,3,,,,final,0.0,2026-11-15T19:01:38+00:00
 1963_dev_plan_taubin_p0027_b02,1963_dev_plan_taubin,1963,final,27,val,"(superblock) Campus development areas; the orienta-
 tion of Campus buildings to greenways, walkways, and
 interior quadrangles; pedestrian and bicycle over-
 passes and underpasses at University Avenue (38th
 Street) and other major arterials cutting through
-the campus; (to the greatest extent possible) the
+the Campus; (to the greatest extent possible) the
 separation of motor vehicle traffic from the traffic
 of bicycles and pedestrians; and the planned inter-
 relation of the Campus' internal circulation pattern
 to the transportation terminals serving the University
 e.g. bus stops, subway kiosks, taxi stands, and off-
-street parking facilities.",12,12,,,,first,,2026-11-15T03:08:40+00:00
+street parking facilities.",12,12,,,,final,,2026-11-15T19:01:49+00:00
 1966_campus_dev_plan_p0024_b00,1966_campus_dev_plan,1966,final,24,test,"acquire Woodlands Cemetery. This will add 50 acres for in-
 tramural and intercollegiate field sports. (It is also an-
 ticipated that the Woodlands site will, because of its topog-
 raphy, provide the area that may be required to construct
 underground facilities for physical science research and
-other educational or research use.)",6,6,,,,first,,2026-11-15T03:14:33+00:00
+other educational or research uses.)",6,6,,,,final,0.003,2026-11-15T19:02:01+00:00
 1966_campus_dev_plan_ua_p0015_b04,1966_campus_dev_plan_ua,1966,final,15,test,"(b) To carry out an accelerated University
 undergraduate residence construction
 program in accordance with the standards
@@ -250,33 +251,33 @@ two have potential frontages also on Sansom
 Street. All three are bounded by one or more
 important pedestrian paths along major north/
 south streets and each impacts four of the most
-important intersections on the campus.",6,6,,,,first,,2026-11-15T03:25:36+00:00
+important intersections on the Campus.",6,6,,,,final,0.0037,2026-11-15T19:02:04+00:00
 1982_campus_dev_plan_reports_p0021_b06,1982_campus_dev_plan_reports,1983,final,21,train,"Professional Office Commercial services that range
 from real estate brokers to insurance offices, doctors,
 and law firms.",3,3,,,,first,,2026-11-15T03:28:46+00:00
 1983_campus_dev_plan_reports_p0141_b02,1983_campus_dev_plan_reports,1984,final,141,train,"Such a solution would not only help clarify circulation and make
 the building more accessible to the handicapped but could also
 provide the first focus for the faculty and students of SEAS
-encouraging intercommunication and interchange so desirable in
-the academic environment.",5,5,,,,first,,2026-11-15T03:30:40+00:00
+encouraging intercommunication and interchange so desireable in
+the academic environment.",5,5,,,,final,,2026-11-15T19:02:12+00:00
 1987_campus_master_plan_draft_p0064_b15,1987_campus_master_plan_draft,1987,draft,64,train,"A number of rail lines cross the precinct; these limit access to the Levy
 Tennis Pavilion and Bower Field to a pedestrian bridge, and render
-access to the river fields difficult and circuitous",3,3,,,,first,,2026-11-15T03:31:43+00:00
-1992_master_land_use_plan_p0007_b04,1992_master_land_use_plan,1992,draft,7,train,"Penn's buildings ought to maintain the dominant city-scape scale of the
-current campus, which features buildings of medium heights that, in their
-placement, relate to the grid systems of the campus as well as the city of
-Philadelphia",4,4,,,,first,,2026-11-15T03:36:44+00:00
+access to the river fields difficult and circuitous.",3,3,,,,final,0.0052,2026-11-15T19:02:20+00:00
+1992_master_land_use_plan_p0007_b04,1992_master_land_use_plan,1992,draft,7,train,"• Penn's buildings ought to maintain the dominant city-scape scale of the
+current campus, which features buildings of medium height that, in their
+placement, relate to the grid systems of the campus as well as of the City of
+Philadelphia.",4,4,,,,final,0.0258,2026-11-15T19:02:46+00:00
 1998_campus_dev_master_plan_p0006_b03,1998_campus_dev_master_plan,1998,draft,6,test,"Accessibility by roads is straightforward as well. Market Street, Philadelphia's major east-west
 cross-town route, creates direct access to Center City from campus, and it frames the northern
-edge of Campus. Market, Chestnut and Walnut Streets all provide access to Interstate high
+edge of Campus. Market, Chestnut and Walnut Streets all provide access to Interstate high-
 ways I-76, with University Avenue providing a more southern entrance, across the Grays Ferry
-Avenue Bridge.",5,5,,,,first,,2026-11-15T03:41:12+00:00
+Avenue Bridge.",5,5,,,,final,,2026-11-15T19:02:52+00:00
 1998_campus_dev_plan_brief_p0046_b00,1998_campus_dev_plan_brief,1998,final,46,train,"During the past 20 years various development
 projects have been proposed to the University.
 Some of these projects have been built, some
 have not. The following illustrative sketches
 attempt to show some of these proposals in con-
-text of the campus.and other projects.",6,6,,,,first,,2026-11-15T03:42:36+00:00
+text of the campus. and other projects.",6,6,,,,final,,2026-11-15T19:02:59+00:00
 1948_physical_dev_report_p0003_b05,1948_physical_dev_report,1948,final,3,val,"The President requested that the Trustees Committee on Physical Development
 give consideration to the ways and means of effecting the desired results. The
 Committee met shortly thereafter, there being present by invitation Dr.",3,3,,,,first,,2026-11-15T03:43:40+00:00
@@ -285,7 +286,7 @@ Second Printing -- March, 1961
 Third Printing -- August, 1961",3,3,,,,first,,2026-11-15T03:44:24+00:00
 1961_dev_plan_taubin_p0171_b00,1961_dev_plan_taubin,1961,draft,171,train,"1. The total Campus area of 250 acres projected for 1975 includes the area to be acquired
 through proposed street closings. The area in the proposed closed streets are not
-enumerated among the land areas listed in Appendix I and Appendix II",3,3,,,,first,,2026-11-15T03:46:25+00:00
+enumerated among the land areas listed in Appendix I and Appendix II.",3,3,,,,final,,2026-11-15T19:03:18+00:00
 1963_dev_plan_p0018_b00,1963_dev_plan,1963,final,18,val,"Total Existing and Projected Essential
 Off-Street Parking Requirements
 of",3,3,,,,first,,2026-11-15T03:47:04+00:00
@@ -306,15 +307,15 @@ development plan and the City's dynamic urban renewal effort.",3,3,,,,first,,202
 1977_landscape_dev_plan_p0015_b00,1977_landscape_dev_plan,1977,final,15,val,"trees."" Beyond the creation of the Green, the report stressed
 the establishment of an organic network of campus exterior
 spaces, including the dormitory quads, Houston Hall Green, the
-University Museum Courtyards, and other spatial links, many of
+University Museum courtyards, and other spatial links, many of
 which were never implemented. This, more than any other
 comprehensive plan to date, helped form the distinctive spaces
 of the campus as we know it today. The final recommendation of
 the report still holds great power for today's campus plan:
 ""We would ask attention to an important consideration in all
 developments ... namely the fixed principle of creating new
-and preserving old open spaces enclosed by building and not
-employed to surround them.""",12,11,,,,first,,2026-11-15T04:07:01+00:00
+and preserving old open spaces enclosed by buildings and not
+employed to surround them.""",12,11,,,,final,,2026-11-15T19:04:28+00:00
 1978_framework_campus_planning_p0042_b00,1978_framework_campus_planning,1978,draft,42,train,"when contraction proves necessary for survival. Nonetheless, commitment to a
 steady-state policy must emerge not from a denial of other possibilities but
 rather as a positive, realistic choice. A thoughtful assessment of our priori-
@@ -323,7 +324,7 @@ opportunities may begin to arise as a product of population growth on the one
 hand and faculty retirements on the other.",6,6,,,,first,,2026-11-15T04:10:13+00:00
 1979_campus_dev_plan_interim_p0017_b01,1979_campus_dev_plan_interim,1979,draft,17,val,"b. A study of the neighborhoods to the west and north of the
 campus, their resources and problems, and the relationships
-between them and the University",3,3,,,,first,,2026-11-15T04:10:57+00:00
+between them and the University.",3,3,,,,final,,2026-11-15T19:04:31+00:00
 1981_campus_dev_plan_reports_p0133_b02,1981_campus_dev_plan_reports,1982,final,133,train,"2. Residential uses
 set back even with the
 Law School, with a corner
@@ -350,11 +351,11 @@ building would be quite small at approximately 5,800 square feet
 and the height constrained to match the height of Smith.",9,9,,,,first,,2026-11-15T05:27:22+00:00
 1987_campus_master_plan_draft_p0006_b01,1987_campus_master_plan_draft,1987,draft,6,val,"A new physical relationship is evolving between the University and downtown
 Philadelphia. The gap between Center City and the campus continues to close. Major
-development projects have already been proposed for both sites of the river north of Market
+development projects have already been proposed for both sides of the river north of Market
 Street. The extensive site occupied by the Post Office, south of Chestnut Street and
 adjacent to Penn's campus, is being promoted for private development, while the relatively
 low-intensity use in portions of University City provides a unique opportunity for
-redevelopment close to the downtown.",7,7,,,,first,,2026-11-15T05:32:19+00:00
+redevelopment close to the downtown.",7,7,,,,final,,2026-11-15T19:05:03+00:00
 1992_master_land_use_plan_p0002_b01,1992_master_land_use_plan,1992,draft,2,val,"Venturi, Scott Brown and Associates, Inc.
 4236 Main Street
 Philadelphia, PA 19127",3,3,,,,first,,2026-11-15T05:32:54+00:00
@@ -367,13 +368,13 @@ roughly along 31st Street continuing to the
 south of the Civic Center and to the west banks",7,7,,,,first,,2026-11-15T05:34:29+00:00
 1948_physical_dev_report_p0007_b03,1948_physical_dev_report,1948,final,7,test,"The sites that have been selected for the buildings that comprise some of
 the main objectives of the present campaign may require some explanation.
-Physical Building Site:",3,3,,,,first,,2026-11-15T05:35:20+00:00
+Physics Building Site:",3,3,,,,final,0.0117,2026-11-15T19:05:41+00:00
 1961_dev_plan_taubin_p0085_b02,1961_dev_plan_taubin,1961,draft,85,train,"The University's existing and projected plant require-
 ments, as reported in the previous chapter and tabulated
 in the Appendices, have been grouped by functions.",3,3,,,,first,,2026-11-15T05:36:22+00:00
 1963_dev_plan_p0036_b00,1963_dev_plan,1963,final,36,val,"4. The City of Philadelphia's land use zoning program.
 (Existing and proposed zoning are illustrated on
-the two maps so titled.)",3,3,,,,first,,2026-11-15T05:37:08+00:00
+the two maps so titled.)",3,3,,,,first,0.0,2026-11-15T05:37:08+00:00
 1963_dev_plan_taubin_p0005_b05,1963_dev_plan_taubin,1963,final,5,val,"Critical self-examination of educational
 program, policy, and goals (i.e., Educational
 Survey);",3,3,,,,first,,2026-11-15T05:37:46+00:00
@@ -390,12 +391,12 @@ this area is largely one of non-campus residential uses. Yet an
 important campus-related event occurs at the intersection of
 four major transportation routes -- Woodland Avenue, Baltimore
 Avenue, University Avenue, and 38th Street. At present this
-intersection is bewildering disarray; it functions poorly
+intersection is a bewildering disarray; it functions poorly
 even in terms of the basic functional requirements for
 vehicular and pedestrian circulation, but more than that it is
 totally inappropriate as the gateway through which much
 pedestrian and vehicular traffic from West Philadelphia, and a
-good deal of traffic from the expressway, enters the campus.",11,11,,,,first,,2026-11-15T05:43:14+00:00
+good deal of traffic from the expressway, enters the campus.",11,11,,,,final,,2026-11-15T19:05:50+00:00
 1978_framework_campus_planning_p0035_b01,1978_framework_campus_planning,1978,draft,35,test,"The concept of One University is based on the conclusion that our
 greatest potential strength and uniqueness lies both in our his-
 toric linkage of professional education with the liberal arts and
@@ -425,14 +426,14 @@ of proximity and orientation to the academic and
 administrative centers of the University. The
 Walnut Street sites are unique in their potential
 to meet these criteria, particularly the site
-between 36th and 37th Street.",8,8,,,,first,,2026-11-15T05:57:49+00:00
+between 36th and 37th Street.",8,8,,,,first,0.0,2026-11-15T05:57:49+00:00
 1982_campus_dev_plan_reports_p0162_b03,1982_campus_dev_plan_reports,1983,final,162,test,"The four remaining site options are all east of
 the tracks, in Parcel II. They have reasonable ped-
 estrian access via the Smith Walk extension and the
 Blue Bridge, and are accessible by auto off Chestnut
 Street via 31st Street. They are all near the major
 athletic facilities, though not directly adjacent to
-them. Here is where the similarities end.",7,7,,,,first,,2026-11-15T05:59:49+00:00
+them. Here is where the similarities end.",7,7,,,,first,0.0,2026-11-15T05:59:49+00:00
 1983_campus_dev_plan_reports_p0049_b02,1983_campus_dev_plan_reports,1984,final,49,test,"Therefore: it is recommended that the basic constraints upon
 materials campus-wide be maintained. This means that the exterior
 expression of all buildings carry through the dominant red brick
@@ -443,8 +444,8 @@ results in an entirely new facade) in terms of their architectural
 character. This should not necessarily be interpreted to mean
 that additions slavishly replicate the existing design, although
 this is one alternative. Contrast, sensitively handled, can some-
-times exhibit greater respect for an existing structure than half0
-hearted mimicry",12,12,,,,first,,2026-11-15T06:03:27+00:00
+times exhibit greater respect for an existing structure than half-
+hearted mimicry.",12,12,,,,final,,2026-11-15T19:06:12+00:00
 1987_campus_master_plan_draft_p0035_b03,1987_campus_master_plan_draft,1987,draft,35,test,"2. The new center should be viewed as providing a focus for student and faculty
 activity, while maintaining many of the current subcenters for University life,
 including the Faculty Club, the Greenfield Center, the Christian Association, and
@@ -452,7 +453,7 @@ others. The Plan thus recognizes the need to augment existing facilities, withou
 giving up appropriate spaces which are currently in use. By providing a new focal
 center while supporting some degree of decentralization, the Plan recognizes the rich
 complexity and the magnitude of the University community, which could be
-inappropriately accommodated in a single location",8,8,,,,first,,2026-11-15T17:23:31+00:00
+inappropriately accommodated in a single location.",8,8,,,,final,,2026-11-15T19:06:14+00:00
 1992_master_land_use_plan_p0021_b01,1992_master_land_use_plan,1992,draft,21,test,"A major component of the proposed utilities plan will be the new
 cogeneration plant on the Murphy Field site. This roughly five-story facility
 will require careful design to relate to the riverfront athletic facilities and the
@@ -471,18 +472,18 @@ COMMITTEE ON PHYSICAL DEVELOPMENT OF THE UNIVERSITY",3,3,,,,first,,2026-11-15T17
 began to evolve with the 1913 ""Preliminary Report and
 Plan for the Future Development of University Property
 and Buildings and the Conservation of Surrounding
-Territory.""",5,5,,,,first,,2026-11-15T17:34:18+00:00
+Territory。""",5,5,,,,final,,2026-11-15T19:06:20+00:00
 1963_dev_plan_taubin_p0030_b01,1963_dev_plan_taubin,1963,final,30,val,"The Land Acquisition Map shows the land area that needs to
 be acquired and the streets that need to be closed to permit
 the University's expansion program to proceed on schedule.",3,3,,,,first,,2026-11-15T17:37:19+00:00
-1966_campus_dev_plan_p0008_b00,1966_campus_dev_plan,1966,final,8,test,"Collation and analysis of physical plant needs 9this
+1966_campus_dev_plan_p0008_b00,1966_campus_dev_plan,1966,final,8,test,"Collation and analysis of physical plant needs (this
 work was commenced during 1955, included the coordi-
 nated contributions of many University officials and
-special faculty-administration committees);",4,4,,,,first,,2026-11-15T17:38:29+00:00
+special faculty-administration committees);",4,4,,,,final,,2026-11-15T19:06:28+00:00
 1966_campus_dev_plan_ua_p0015_b01,1966_campus_dev_plan_ua,1966,final,15,test,"The development standards and design objectives
 presented below have been accepted as the basis for
-the evolution of overall system of University
-student residence.",4,4,,,,first,,2026-11-15T17:39:53+00:00
+the evolution of an overall system of University
+student residence.",4,4,,,,final,,2026-11-15T19:06:31+00:00
 1977_landscape_dev_plan_p0085_b01,1977_landscape_dev_plan,1977,final,85,train,"tupelo (Nyssa sylvatica), red maple (Acer rubrum), and white
 ash (Fraxinus pennsylvanica). Appropriate flowering under-
 story species include sarvistree (Amelanchier laevis), Merrill
@@ -496,27 +497,27 @@ campus buildings) is discontinuous and often without human scale, often
 empty or overbearing"".",5,5,,,,first,,2026-11-15T17:43:50+00:00
 1981_campus_dev_plan_reports_p0129_b03,1981_campus_dev_plan_reports,1982,final,129,train,"The following describes the character and function
 of these pathways, and the impact they could have
-on development and vice versa.",3,3,,,,first,,2026-11-15T17:44:31+00:00
+on development and vice versa.",3,3,,,,first,0.0,2026-11-15T17:44:31+00:00
 1982_campus_dev_plan_reports_p0070_b04,1982_campus_dev_plan_reports,1983,final,70,train,"- That this development, though needing to be dis-
 tributed so as to better serve the Campus, should
-be conceived as an identifiable ""place"" to ben-
-efit the merchant and the University community",4,4,,,,first,,2026-11-15T17:47:30+00:00
+be conceived of as an identifiable ""place"" to ben-
+efit the merchant and the University community.",4,4,,,,final,0.0205,2026-11-15T19:06:45+00:00
 1983_campus_dev_plan_reports_p0178_b00,1983_campus_dev_plan_reports,1984,final,178,train,"tories, such as the new Bioengineering Laboratory Suite, are in
 the form of clusters of rooms serving teams of researchers on
 specialized target research programs. Finally, there are the very
 large spaces mandated by large and often immovable equipment such
-as Room 170 on the first floor of Towne. A summary of the sizes
-of these assigned research laboratories is as follows:",6,6,,,,first,,2026-11-15T18:09:40+00:00
+as Room 170 on the first floor of Towne. A summary* of the sizes
+of these assigned research laboratories is as follows:",6,6,,,,final,0.0027,2026-11-15T19:07:06+00:00
 1987_campus_master_plan_draft_p0019_b05,1987_campus_master_plan_draft,1987,draft,19,train,"2. The unresolved termination of Hamilton Walk to the west and its juncture with
 Woodland Walk is another problem. The area surrounding the Veterinary School and its
 traffic configuration should be restudied and, if possible, altered to help resolve problems
 as well as improve the surroundings of the school itself.",4,4,,,,first,,2026-11-15T18:11:28+00:00
 1992_master_land_use_plan_p0015_b06,1992_master_land_use_plan,1992,draft,15,train,"The major north-south pedestrian paths along 34th and 40th Streets will be
 upgraded, and car access on 34th will be eliminated south of Spruce Street. 36th
-and 27th Streets remain for pedestrians only where they pass through the
+and 37th Streets remain for pedestrians only where they pass through the
 campus. A diagonal path will be developed between Hamilton Village and the
 Revlon Center. This path will cut through the Locust Walk North and Revlon
-sites to reach retail areas on Sansom and Moravian Court.",6,6,,,,first,,2026-11-15T18:16:42+00:00
+sites to reach retail areas on Sansom and Moravian Court.",6,6,,,,final,,2026-11-15T19:07:16+00:00
 1998_campus_dev_plan_brief_p0019_b04,1998_campus_dev_plan_brief,1998,final,19,test,"Building heights throughout the campus vary from
 low-rise frame buildings to 24-story concrete
 towers. The pedestrian ways -- Locust Walk,

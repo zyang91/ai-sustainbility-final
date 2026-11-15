@@ -3,8 +3,12 @@
     streamlit run app/validator.py
 
 Shows one cropped paragraph from a scanned page next to an empty box. The
-annotator types exactly what the image shows. No OCR output is ever loaded or
-displayed here, so the transcription cannot be anchored to a model.
+annotator types exactly what the image shows. The transcribe and second-pass
+modes never load OCR output, so the typing cannot be anchored to a model.
+
+The last mode, "Check mismatched lines", is for after the blind passes: it
+shows only the printed lines where the typed text differs from the second
+typing or from the baseline OCR, and the annotator decides from the image.
 """
 import difflib
 import html
@@ -16,7 +20,9 @@ from pathlib import Path
 import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from penn_ocr import metrics, store  # noqa: E402
+from PIL import Image  # noqa: E402
+
+from penn_ocr import linecheck, metrics, store  # noqa: E402
 from penn_ocr.config import CROPS, SEED  # noqa: E402
 
 RECHECK_SHARE = 0.15      # share of finished samples offered for a blind second pass
@@ -65,7 +71,8 @@ def diff_html(a: str, b: str) -> str:
 with st.sidebar:
     st.header("Transcription")
     annotator = st.text_input("Annotator", key="annotator", placeholder="your initials")
-    mode = st.radio("Mode", ["Transcribe", "Second pass (blind recheck)", "Review & reconcile"])
+    mode = st.radio("Mode", ["Transcribe", "Second pass (blind recheck)", "Review & reconcile",
+                             "Check mismatched lines (shows OCR)"])
     n_first = sum("first" in log.get(s["sample_id"], {}) for s in samples)
     st.progress(n_first / len(samples), text=f"{n_first} of {len(samples)} regions transcribed")
     docs_done = len({s["doc_id"] for s in samples if "first" in log.get(s["sample_id"], {})})
@@ -91,6 +98,9 @@ if mode == "Transcribe":
 elif mode.startswith("Second"):
     pass_ = "second"
     todo = [i for i in recheck_ids() if "second" not in log[i]]
+elif mode.startswith("Check"):
+    pass_ = "check"
+    todo = []
 else:
     pass_ = "final"
     todo = []
@@ -147,6 +157,73 @@ if pass_ in ("first", "second"):
         st.caption("You typed this region before. Type it again from the image without looking "
                    "at your earlier text; disagreements reveal typing errors.")
     transcribe(queue[0], pass_)
+
+# ---------------------------------------------------------------- line check
+elif pass_ == "check":
+    preds = linecheck.predictions()
+    todo = linecheck.issues(samples, log, preds)
+    st.subheader(f"Check mismatched lines · {len(todo)} left")
+    if not preds:
+        st.warning("No baseline OCR output found (`python -m penn_ocr.predict --engine paddle`); "
+                   "only second-pass disagreements are listed.")
+    if not todo:
+        st.success("No open mismatches. Run `python -m penn_ocr.groundtruth` to rebuild the table.")
+        st.stop()
+    it = todo[0]
+    sid, s = it["sample_id"], by_id[it["sample_id"]]
+    ref = store.reference(log[sid])
+    keys = [k for _, _, k in it["alts"]]
+    st.caption(f"**{s['title']}** ({s['year']}) · page {s['page']} · `{sid}` · queue no. {s['order']}")
+
+    def settle(decision: str, new_text: str):
+        """Log the decision; store a new final text only if the text changed."""
+        if store.clean(new_text) != ref["text"]:
+            store.save(sid, new_text, "final", ref["flags"], ref["notes"], annotator)
+        linecheck.record(sid, keys, decision, it["mine"],
+                         new_text if it["kind"] != "line" else new_text.split("\n")[it["line"]],
+                         annotator)
+        st.rerun()
+
+    crop = Image.open(CROPS / f"{sid}.png")
+    if it["kind"] == "line":
+        x0, y0, x1, y1 = store.sample_lines()[sid][it["line"]]
+        st.image(crop.crop((0, max(0, int(y0) - 14), crop.width, min(crop.height, int(y1) + 14))),
+                 use_container_width=True)
+        st.markdown(f"Printed line {it['line'] + 1} of {s['n_lines']}. "
+                    "Red = only in your text, green = only in the other reading.")
+        lines = ref["text"].split("\n")
+
+        def with_line(t: str) -> str:
+            return "\n".join(lines[:it["line"]] + [t] + lines[it["line"] + 1:])
+
+        for src, other, _ in it["alts"]:
+            st.markdown(f"**{linecheck.SOURCES[src]}** says:")
+            st.markdown(diff_html(it["mine"], other), unsafe_allow_html=True)
+        edited = st.text_input("Correct text of this line", value=it["mine"], key="edit-" + keys[0])
+        cols = st.columns(len(it["alts"]) + 1)
+        if cols[0].button("Save the line as shown in the box", type="primary", use_container_width=True):
+            settle("kept" if edited == it["mine"] else "edited", with_line(edited))
+        for col, (src, other, _) in zip(cols[1:], it["alts"]):
+            if col.button(f"{linecheck.SOURCES[src]} is right", use_container_width=True, key=f"use-{src}"):
+                settle(f"took_{src}", with_line(other))
+        with st.expander("Show the whole paragraph"):
+            st.image(crop, use_container_width=True)
+    else:
+        st.image(crop, use_container_width=True)
+        src, other, _ = it["alts"][0]
+        if it["kind"] == "missing":
+            st.markdown(f"**{linecheck.SOURCES[src]}** has a line that your text does not. "
+                        "If you skipped it, add it below; if it is not part of the paragraph, save unchanged.")
+            st.code(other, language=None)
+        else:
+            st.markdown("Your line breaks do not follow the print, so the whole paragraph is compared. "
+                        f"Red = only in your text, green = only in **{linecheck.SOURCES[src]}**.")
+            st.markdown(diff_html(metrics.normalize(it["mine"]), metrics.normalize(other)),
+                        unsafe_allow_html=True)
+        edited = st.text_area("Your text (one printed line per line)", value=ref["text"],
+                              key="edit-" + keys[0], height=min(520, 90 + 26 * s["n_lines"]))
+        if st.button("Save", type="primary", use_container_width=True):
+            settle("kept" if store.clean(edited) == ref["text"] else "edited", edited)
 
 # ---------------------------------------------------------------- review
 else:
