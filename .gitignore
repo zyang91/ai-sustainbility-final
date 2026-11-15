@@ -193,7 +193,7 @@ cython_debug/
 # Abstra
 #   Abstra is an AI-powered process automation framework.
 #   Ignore directories containing user credentials, local state, and settings.
-#   Learn more at https://abstra.io/docs
+#   Learn more at https://abstra.io/docs 
 .abstra/
 
 # Visual Studio Code
@@ -222,3 +222,5 @@ __marimo__/
 data/
 
 .DS_Store
+# Derived images, model outputs and the PaddleOCR training checkout
+work/

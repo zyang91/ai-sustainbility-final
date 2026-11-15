@@ -1,0 +1,18 @@
+# conda create -n penn-ocr python=3.12 && conda activate penn-ocr && pip install -r requirements.txt
+paddlepaddle==3.3.1
+paddleocr==3.7.0
+pymupdf
+opencv-python-headless
+numpy
+pillow
+pyyaml
+jiwer
+streamlit
+# PaddleOCR training code (finetune/run_finetune.sh)
+albumentations
+lmdb
+rapidfuzz
+scikit-image
+pyclipper
+shapely
+# optional comparison baseline: pip install "python-doctr[torch]"

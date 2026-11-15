@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "validator",
+      "runtimeExecutable": "/opt/anaconda3/envs/penn-ocr/bin/streamlit",
+      "runtimeArgs": ["run", "app/validator.py", "--server.port", "8517", "--server.headless", "true"],
+      "port": 8517
+    }
+  ]
+}
