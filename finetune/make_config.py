@@ -21,6 +21,7 @@ ap.add_argument("--lr", type=float, default=2e-5)
 ap.add_argument("--batch-size", type=int, default=8)
 ap.add_argument("--data", default=str(REC_DATASET))
 ap.add_argument("--out", default=str(WORK / "finetune"))
+ap.add_argument("--gpu", action="store_true", help="train on an NVIDIA GPU (e.g. Colab)")
 args = ap.parse_args()
 
 repo, out, data = WORK / "PaddleOCR", Path(args.out), Path(args.data)
@@ -29,7 +30,7 @@ n_train = sum(1 for _ in open(data / "rec_gt_train.txt"))
 steps_per_epoch = max(1, n_train // args.batch_size)
 
 g = cfg["Global"]
-g.update(use_gpu=False, distributed=False, epoch_num=args.epochs,
+g.update(use_gpu=args.gpu, distributed=False, epoch_num=args.epochs,
          pretrained_model=str(WORK / "pretrained" / f"{args.model}_pretrained"),
          save_model_dir=str(out / "checkpoints"), save_inference_dir=str(out / "inference"),
          character_dict_path=str(repo / g["character_dict_path"]),
@@ -51,8 +52,8 @@ for t in tr["dataset"]["transforms"]:
 tr["dataset"]["ext_op_transform_idx"] = 1
 # The stock sampler squeezes every image to 320 px wide, which is right for
 # single words but makes a 70-character line unreadable. Train at the same
-# 1280 px width used for validation.
-tr["sampler"].update(first_bs=args.batch_size, scales=[[1280, 32], [1280, 48], [1280, 64]])
+# 1280 x 48 px used for validation (one height only: see train_lines.py).
+tr["sampler"].update(first_bs=args.batch_size, scales=[[1280, 48]])
 tr["loader"].update(batch_size_per_card=args.batch_size, num_workers=0,
                     drop_last=n_train >= args.batch_size)
 

@@ -59,8 +59,11 @@ Changes from the stock config:
 | Train / eval image width | 320 px | 1280 px | A full line squeezed to 320 px is unreadable. |
 | `RecConAug` | on | removed | It concatenates several samples; lines are already full width. |
 | Learning rate | 5e-4, 5 warm-up epochs | 2e-5, 1 warm-up epoch | Small data, start from converged weights. |
-| Epochs / batch | 100 / 64 | 10 / 8 | CPU training on a few hundred lines. |
-| Device | GPU, distributed | CPU, single process | No CUDA on this machine; Paddle has no Apple-GPU backend. |
+| Training image height | 32, 48 or 64 px (multi-scale) | 48 px | Needed by the pooling change below. |
+| Backbone pooling in training | fixed 40 columns | same as inference (1 column per 8 px) | See "Training-mode pooling". |
+| BatchNorm in training | batch statistics | pretrained running statistics | Batches of 8 padded lines give noisy statistics. |
+| Epochs / batch | 100 / 64 | 20 / 8 (Colab notebook) | A few hundred lines. |
+| Device | GPU, distributed | one GPU (`--gpu`) or CPU | Paddle has no Apple-GPU backend; training runs on Colab. |
 
 The first validation pass runs after the first epoch and the best checkpoint
 is the one exported, so a run that never beats its early state exports
@@ -68,18 +71,26 @@ something close to the pretrained model. As the vision document says, the
 fine-tuned model is kept only if it beats the pretrained baseline on held-out
 data.
 
-### Known limits (checked 2026-11-14 with a throwaway dataset)
+### Training-mode pooling (found 2026-11-15)
 
-- The script runs end to end on this Mac: weights load with no shape
-  mismatches, validation scores the pretrained model at about 99 % character
-  accuracy, and the exported model loads back through
-  `penn_ocr.predict --rec-model-dir` and transcribes a crop.
-- Training is slow on CPU: roughly 7 s per line image while another OCR job
-  was running. A few hundred lines for 10 epochs is an overnight run. A GPU
-  machine (or `MODEL=PP-OCRv6_small_rec`) is the practical route.
-- The accuracy printed for *training* batches is very low even before any
-  weight update, while validation is high. The likely cause is batch
-  normalisation running on small, heavily padded batches; this is not yet
-  confirmed. Judge runs by the validation metric and by
-  `python -m penn_ocr.evaluate --split val`, not by the training readout.
-- No result on real human labels exists yet. Whether fine-tuning helps is open.
+With pretrained weights and no update, training batches scored about 20 %
+character similarity while the same model scored over 99 % in evaluation.
+Cause: in training mode the PP-OCRv6 backbone (`rec_lcnetv4.py`) pools its
+feature map to a fixed 40 columns, which fits 320 px word crops but cannot
+spell a 70-character line. `finetune/train_lines.py` runs the stock
+`tools/train.py` with the inference pooling used in training too, and with
+BatchNorm statistics frozen. Measured on one clean validation batch in
+training mode: 24 % character similarity stock, 87 % with the pooling change,
+100 % with BatchNorm frozen as well. The PaddleOCR checkout itself is not
+edited.
+
+### Status
+
+- Pretrained model on the 101 validation lines (line images, recognition
+  only): 95.0 % exact lines, 99.6 % character similarity.
+- CPU training on this Mac takes about 56 s per batch of 8, so training runs
+  on a Colab GPU with `finetune/colab_finetune.ipynb`. The notebook has not
+  been executed on Colab yet.
+- No fine-tuning result on human labels exists yet. Whether it helps is open.
+  Most remaining baseline errors on the benchmark are whole lines missed by
+  detection, which recognition fine-tuning cannot fix.

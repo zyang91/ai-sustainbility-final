@@ -24,7 +24,12 @@ mkdir -p "$(dirname "$WEIGHTS")"
 
 python "$ROOT/finetune/make_config.py" --model "$MODEL" --out "$OUT" "$@"
 cd "$REPO"
-python tools/train.py -c "$OUT/config.yml"
+echo "== Validation score of the pretrained model, before any training =="
+python tools/eval.py -c "$OUT/config.yml" 2>&1 | tee "$OUT/eval_before.log" | grep -E "acc|norm_edit_dis|fps" || true
+python "$ROOT/finetune/train_lines.py" -c "$OUT/config.yml" 2>&1 | tee "$OUT/train.log"
+echo "== Validation score of the best fine-tuned checkpoint =="
+python tools/eval.py -c "$OUT/config.yml" -o Global.checkpoints="$OUT/checkpoints/best_accuracy" \
+  2>&1 | tee "$OUT/eval_after.log" | grep -E "acc|norm_edit_dis|fps" || true
 python tools/export_model.py -c "$OUT/config.yml" \
   -o Global.pretrained_model="$OUT/checkpoints/best_accuracy" Global.save_inference_dir="$OUT/inference"
 echo "Fine-tuned recognition model exported to $OUT/inference"

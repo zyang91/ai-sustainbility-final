@@ -82,6 +82,15 @@ that residual overlap is a known limit of a small archive.
 - **Second pass**: about 15 % of finished samples come back blank for an
   independent re-typing. **Review & reconcile** shows the two passes side by
   side and saves a reconciled final text.
+- **Check mismatched lines** (used after the blind passes): the second pass
+  showed that two human typings of the same paragraph disagree at about 0.7 %
+  CER, as much as the OCR baseline disagrees with a human. This mode lists only
+  the printed lines where the typed text differs from the second typing or from
+  the baseline OCR, shows the line image, and the annotator decides. It is the
+  one place where model output is shown. Consequences, stated plainly: lines
+  where human and OCR agree were not re-read, so a shared error survives, and
+  the corrected ground truth leans slightly towards the baseline model. Every
+  decision is logged in `annotation/line_checks.jsonl`.
 - Every save appends to `annotation/transcriptions.jsonl`; nothing is
   overwritten, so the benchmark can be audited.
 
