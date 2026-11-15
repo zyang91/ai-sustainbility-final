@@ -1,0 +1,95 @@
+order,sample_id,doc_id,year,title,status,page,x0,y0,x1,y1,rotation,n_lines,split,quality_bin
+1,1948_physical_dev_report_p0005_b05,1948_physical_dev_report,1948,Report of the Trustees' Committee on the Physical Development of the University,final,5,169,1427,1540,2143,0,11,train,low
+2,1961_dev_plan_p0016_b05,1961_dev_plan,1961,"University of Pennsylvania Development Plan (Report to the President, March 1961)",final,16,748,1196,1537,1450,180,6,train,low
+3,1961_dev_plan_taubin_p0004_b00,1961_dev_plan_taubin,1961,"University of Pennsylvania Development Plan, March 1961 edition (Taubin desk copy with revisions)",draft,4,238,1659,1274,1954,0,7,train,low
+4,1963_dev_plan_p0006_b01,1963_dev_plan,1963,"University of Pennsylvania Development Plan (for City Planning Commission, February 1963)",final,6,346,981,1459,1155,0,4,val,mid
+5,1963_dev_plan_taubin_p0018_b03,1963_dev_plan_taubin,1963,"University of Pennsylvania Development Plan, 1963 (Taubin file copy)",final,18,252,1263,1275,1608,0,8,val,low
+6,1966_campus_dev_plan_p0008_b06,1966_campus_dev_plan,1966,"University of Pennsylvania Campus Development Plan (third edition, April 1966)",final,8,196,1313,1551,1820,0,9,test,mid
+7,1966_campus_dev_plan_ua_p0035_b01,1966_campus_dev_plan_ua,1966,"Campus Development Plan, 1966 (University Architect records copy)",final,35,241,1074,1570,1585,0,10,test,low
+8,1977_landscape_dev_plan_p0054_b01,1977_landscape_dev_plan,1977,"Landscape Development Plan (Center for Environmental Design, February 1977)",final,54,1100,606,2023,908,0,10,train,mid
+9,1978_framework_campus_planning_p0042_b02,1978_framework_campus_planning,1978,"A Framework for Campus Planning (Davis & Brody Associates, 1978-79)",draft,42,166,1611,1547,2007,0,6,train,high
+10,1979_campus_dev_plan_interim_p0064_b06,1979_campus_dev_plan_interim,1979,"University of Pennsylvania Development Plan, Interim Report (October 1979)",draft,64,242,1295,1624,1693,0,6,train,low
+11,1981_campus_dev_plan_reports_p0133_b01,1981_campus_dev_plan_reports,1982,"Campus Development Plan, 1981-82 Reports",final,133,1391,1431,1872,1533,0,3,train,high
+12,1982_campus_dev_plan_reports_p0144_b00,1982_campus_dev_plan_reports,1983,"Campus Development Plan, 1982-83 Reports",final,144,1116,215,1908,523,0,8,train,mid
+13,1983_campus_dev_plan_reports_p0029_b00,1983_campus_dev_plan_reports,1984,"Campus Development Plan, 1983-84 Reports",final,29,802,362,1933,612,0,7,train,low
+14,1987_campus_master_plan_draft_p0067_b13,1987_campus_master_plan_draft,1987,Campus Master Plan draft and correspondence (1987),draft,67,114,1845,832,1959,0,4,train,mid
+15,1992_master_land_use_plan_p0027_b07,1992_master_land_use_plan,1992,"Master Land Use Plan, preliminary (Venturi, Scott Brown and Associates, October 1992)",draft,27,129,1296,1050,1543,0,7,train,mid
+16,1998_campus_dev_master_plan_p0072_b00,1998_campus_dev_master_plan,1998,"Campus Development Master Plan, Executive Brief (draft 04-27-98)",draft,72,1594,434,2987,636,180,5,train,mid
+17,1998_campus_dev_plan_brief_p0031_b02,1998_campus_dev_plan_brief,1998,"Campus Development Plan, Executive Brief 1998",final,31,1438,1301,2021,1438,0,4,train,low
+18,1948_physical_dev_report_p0009_b02,1948_physical_dev_report,1948,Report of the Trustees' Committee on the Physical Development of the University,final,9,165,1098,1548,1485,0,6,test,mid
+19,1961_dev_plan_taubin_p0019_b05,1961_dev_plan_taubin,1961,"University of Pennsylvania Development Plan, March 1961 edition (Taubin desk copy with revisions)",draft,19,709,757,1507,948,0,4,train,high
+20,1963_dev_plan_p0013_b05,1963_dev_plan,1963,"University of Pennsylvania Development Plan (for City Planning Commission, February 1963)",final,13,543,1600,1472,1729,0,3,val,high
+21,1963_dev_plan_taubin_p0003_b00,1963_dev_plan_taubin,1963,"University of Pennsylvania Development Plan, 1963 (Taubin file copy)",final,3,255,471,1593,609,0,3,val,high
+22,1966_campus_dev_plan_p0037_b06,1966_campus_dev_plan,1966,"University of Pennsylvania Campus Development Plan (third edition, April 1966)",final,37,288,1330,1444,1537,0,4,test,low
+23,1966_campus_dev_plan_ua_p0044_b06,1966_campus_dev_plan_ua,1966,"Campus Development Plan, 1966 (University Architect records copy)",final,44,346,1281,1429,1437,0,3,test,low
+24,1977_landscape_dev_plan_p0003_b04,1977_landscape_dev_plan,1977,"Landscape Development Plan (Center for Environmental Design, February 1977)",final,3,1098,1442,2016,1544,0,3,test,low
+25,1978_framework_campus_planning_p0035_b02,1978_framework_campus_planning,1978,"A Framework for Campus Planning (Davis & Brody Associates, 1978-79)",draft,35,132,1318,1513,1976,0,10,test,mid
+26,1979_campus_dev_plan_interim_p0027_b01,1979_campus_dev_plan_interim,1979,"University of Pennsylvania Development Plan, Interim Report (October 1979)",draft,27,256,527,1557,852,0,5,test,mid
+27,1981_campus_dev_plan_reports_p0113_b06,1981_campus_dev_plan_reports,1982,"Campus Development Plan, 1981-82 Reports",final,113,308,1186,1079,1529,0,9,test,mid
+28,1982_campus_dev_plan_reports_p0063_b02,1982_campus_dev_plan_reports,1983,"Campus Development Plan, 1982-83 Reports",final,63,233,261,1042,495,0,6,test,high
+29,1983_campus_dev_plan_reports_p0084_b01,1983_campus_dev_plan_reports,1984,"Campus Development Plan, 1983-84 Reports",final,84,837,721,1966,836,0,3,test,mid
+30,1987_campus_master_plan_draft_p0026_b06,1987_campus_master_plan_draft,1987,Campus Master Plan draft and correspondence (1987),draft,26,207,1148,1317,1261,0,3,test,low
+31,1992_master_land_use_plan_p0025_b04,1992_master_land_use_plan,1992,"Master Land Use Plan, preliminary (Venturi, Scott Brown and Associates, October 1992)",draft,25,142,668,1062,885,0,6,test,low
+32,1998_campus_dev_master_plan_p0006_b01,1998_campus_dev_master_plan,1998,"Campus Development Master Plan, Executive Brief (draft 04-27-98)",draft,6,1591,514,2983,748,180,6,test,low
+33,1998_campus_dev_plan_brief_p0019_b05,1998_campus_dev_plan_brief,1998,"Campus Development Plan, Executive Brief 1998",final,19,182,1407,758,1516,0,3,test,high
+34,1948_physical_dev_report_p0010_b00,1948_physical_dev_report,1948,Report of the Trustees' Committee on the Physical Development of the University,final,10,175,139,1522,386,0,4,train,high
+35,1961_dev_plan_p0016_b04,1961_dev_plan,1961,"University of Pennsylvania Development Plan (Report to the President, March 1961)",final,16,644,1045,1489,1187,180,3,train,high
+36,1961_dev_plan_taubin_p0041_b02,1961_dev_plan_taubin,1961,"University of Pennsylvania Development Plan, March 1961 edition (Taubin desk copy with revisions)",draft,41,537,917,1532,1178,0,6,train,low
+37,1963_dev_plan_p0009_b03,1963_dev_plan,1963,"University of Pennsylvania Development Plan (for City Planning Commission, February 1963)",final,9,515,1517,1410,1649,0,3,val,low
+38,1963_dev_plan_taubin_p0027_b02,1963_dev_plan_taubin,1963,"University of Pennsylvania Development Plan, 1963 (Taubin file copy)",final,27,333,1169,1548,1672,0,12,val,mid
+39,1966_campus_dev_plan_p0024_b00,1966_campus_dev_plan,1966,"University of Pennsylvania Campus Development Plan (third edition, April 1966)",final,24,420,164,1665,487,0,6,test,high
+40,1966_campus_dev_plan_ua_p0015_b04,1966_campus_dev_plan_ua,1966,"Campus Development Plan, 1966 (University Architect records copy)",final,15,652,1243,1571,1451,0,4,test,high
+41,1977_landscape_dev_plan_p0096_b01,1977_landscape_dev_plan,1977,"Landscape Development Plan (Center for Environmental Design, February 1977)",final,96,1111,400,2045,912,0,12,train,high
+42,1978_framework_campus_planning_p0001_b02,1978_framework_campus_planning,1978,"A Framework for Campus Planning (Davis & Brody Associates, 1978-79)",draft,1,457,1745,1317,2017,0,6,train,low
+43,1979_campus_dev_plan_interim_p0097_b02,1979_campus_dev_plan_interim,1979,"University of Pennsylvania Development Plan, Interim Report (October 1979)",draft,97,363,745,1309,1034,0,8,train,mid
+44,1981_campus_dev_plan_reports_p0129_b00,1981_campus_dev_plan_reports,1982,"Campus Development Plan, 1981-82 Reports",final,129,1230,388,2012,623,0,6,train,high
+45,1982_campus_dev_plan_reports_p0021_b06,1982_campus_dev_plan_reports,1983,"Campus Development Plan, 1982-83 Reports",final,21,1173,941,2040,1058,0,3,train,high
+46,1983_campus_dev_plan_reports_p0141_b02,1983_campus_dev_plan_reports,1984,"Campus Development Plan, 1983-84 Reports",final,141,235,1045,1367,1232,0,5,train,high
+47,1987_campus_master_plan_draft_p0064_b15,1987_campus_master_plan_draft,1987,Campus Master Plan draft and correspondence (1987),draft,64,95,1965,833,2064,0,3,train,high
+48,1992_master_land_use_plan_p0007_b04,1992_master_land_use_plan,1992,"Master Land Use Plan, preliminary (Venturi, Scott Brown and Associates, October 1992)",draft,7,1087,273,2012,424,0,4,train,high
+49,1998_campus_dev_master_plan_p0006_b03,1998_campus_dev_master_plan,1998,"Campus Development Master Plan, Executive Brief (draft 04-27-98)",draft,6,1593,1050,2995,1251,180,5,test,high
+50,1998_campus_dev_plan_brief_p0046_b00,1998_campus_dev_plan_brief,1998,"Campus Development Plan, Executive Brief 1998",final,46,1410,1164,1992,1366,0,6,train,high
+51,1948_physical_dev_report_p0003_b05,1948_physical_dev_report,1948,Report of the Trustees' Committee on the Physical Development of the University,final,3,147,1371,1537,1553,0,3,val,mid
+52,1961_dev_plan_p0002_b00,1961_dev_plan,1961,"University of Pennsylvania Development Plan (Report to the President, March 1961)",final,2,566,734,1260,867,180,3,train,low
+53,1961_dev_plan_taubin_p0171_b00,1961_dev_plan_taubin,1961,"University of Pennsylvania Development Plan, March 1961 edition (Taubin desk copy with revisions)",draft,171,197,1173,2022,1304,0,3,train,low
+54,1963_dev_plan_p0018_b00,1963_dev_plan,1963,"University of Pennsylvania Development Plan (for City Planning Commission, February 1963)",final,18,641,241,1435,377,0,3,val,high
+55,1963_dev_plan_taubin_p0009_b02,1963_dev_plan_taubin,1963,"University of Pennsylvania Development Plan, 1963 (Taubin file copy)",final,9,368,867,1414,1209,0,8,val,mid
+56,1966_campus_dev_plan_p0016_b03,1966_campus_dev_plan,1966,"University of Pennsylvania Campus Development Plan (third edition, April 1966)",final,16,251,1174,1587,1341,0,3,test,high
+57,1966_campus_dev_plan_ua_p0040_b02,1966_campus_dev_plan_ua,1966,"Campus Development Plan, 1966 (University Architect records copy)",final,40,312,1140,1593,1297,0,3,test,mid
+58,1977_landscape_dev_plan_p0015_b00,1977_landscape_dev_plan,1977,"Landscape Development Plan (Center for Environmental Design, February 1977)",final,15,179,165,1079,687,0,11,val,low
+59,1978_framework_campus_planning_p0042_b00,1978_framework_campus_planning,1978,"A Framework for Campus Planning (Davis & Brody Associates, 1978-79)",draft,42,189,195,1551,593,0,6,train,low
+60,1979_campus_dev_plan_interim_p0017_b01,1979_campus_dev_plan_interim,1979,"University of Pennsylvania Development Plan, Interim Report (October 1979)",draft,17,426,253,1486,439,0,3,val,high
+61,1981_campus_dev_plan_reports_p0133_b02,1981_campus_dev_plan_reports,1982,"Campus Development Plan, 1981-82 Reports",final,133,844,1436,1311,1562,0,4,train,mid
+62,1982_campus_dev_plan_reports_p0108_b01,1982_campus_dev_plan_reports,1983,"Campus Development Plan, 1982-83 Reports",final,108,1136,234,1989,653,0,11,val,mid
+63,1983_campus_dev_plan_reports_p0060_b02,1983_campus_dev_plan_reports,1984,"Campus Development Plan, 1983-84 Reports",final,60,783,913,1913,1231,0,9,val,low
+64,1987_campus_master_plan_draft_p0006_b01,1987_campus_master_plan_draft,1987,Campus Master Plan draft and correspondence (1987),draft,6,197,667,1303,912,0,7,val,high
+65,1992_master_land_use_plan_p0002_b01,1992_master_land_use_plan,1992,"Master Land Use Plan, preliminary (Venturi, Scott Brown and Associates, October 1992)",draft,2,824,1463,1384,1565,0,3,val,mid
+66,1998_campus_dev_plan_brief_p0014_b03,1998_campus_dev_plan_brief,1998,"Campus Development Plan, Executive Brief 1998",final,14,1437,1332,2014,1558,0,7,val,mid
+67,1948_physical_dev_report_p0007_b03,1948_physical_dev_report,1948,Report of the Trustees' Committee on the Physical Development of the University,final,7,173,773,1509,958,0,3,test,high
+68,1961_dev_plan_taubin_p0085_b02,1961_dev_plan_taubin,1961,"University of Pennsylvania Development Plan, March 1961 edition (Taubin desk copy with revisions)",draft,85,345,1342,1501,1474,0,3,train,mid
+69,1963_dev_plan_p0036_b00,1963_dev_plan,1963,"University of Pennsylvania Development Plan (for City Planning Commission, February 1963)",final,36,393,151,1524,287,0,3,val,mid
+70,1963_dev_plan_taubin_p0005_b05,1963_dev_plan_taubin,1963,"University of Pennsylvania Development Plan, 1963 (Taubin file copy)",final,5,526,1740,1554,1877,0,3,val,low
+71,1966_campus_dev_plan_p0015_b03,1966_campus_dev_plan,1966,"University of Pennsylvania Campus Development Plan (third edition, April 1966)",final,15,202,965,1558,1255,0,5,test,low
+72,1966_campus_dev_plan_ua_p0044_b03,1966_campus_dev_plan_ua,1966,"Campus Development Plan, 1966 (University Architect records copy)",final,44,346,827,1427,982,0,3,test,low
+73,1977_landscape_dev_plan_p0128_b00,1977_landscape_dev_plan,1977,"Landscape Development Plan (Center for Environmental Design, February 1977)",final,128,1141,224,2073,554,0,11,test,mid
+74,1978_framework_campus_planning_p0035_b01,1978_framework_campus_planning,1978,"A Framework for Campus Planning (Davis & Brody Associates, 1978-79)",draft,35,216,882,1381,1272,0,11,test,high
+75,1979_campus_dev_plan_interim_p0058_b00,1979_campus_dev_plan_interim,1979,"University of Pennsylvania Development Plan, Interim Report (October 1979)",draft,58,238,452,1641,1186,0,12,test,low
+76,1981_campus_dev_plan_reports_p0113_b03,1981_campus_dev_plan_reports,1982,"Campus Development Plan, 1981-82 Reports",final,113,1231,574,2000,884,0,8,test,mid
+77,1982_campus_dev_plan_reports_p0162_b03,1982_campus_dev_plan_reports,1983,"Campus Development Plan, 1982-83 Reports",final,162,1136,1045,1947,1313,0,7,test,mid
+78,1983_campus_dev_plan_reports_p0049_b02,1983_campus_dev_plan_reports,1984,"Campus Development Plan, 1983-84 Reports",final,49,285,904,1417,1321,0,12,test,low
+79,1987_campus_master_plan_draft_p0035_b03,1987_campus_master_plan_draft,1987,Campus Master Plan draft and correspondence (1987),draft,35,197,1013,1229,1295,0,8,test,low
+80,1992_master_land_use_plan_p0021_b01,1992_master_land_use_plan,1992,"Master Land Use Plan, preliminary (Venturi, Scott Brown and Associates, October 1992)",draft,21,146,432,1066,643,0,6,test,high
+81,1998_campus_dev_plan_brief_p0031_b01,1998_campus_dev_plan_brief,1998,"Campus Development Plan, Executive Brief 1998",final,31,784,1296,1368,1465,0,5,train,low
+82,1948_physical_dev_report_p0002_b01,1948_physical_dev_report,1948,Report of the Trustees' Committee on the Physical Development of the University,final,2,444,1083,1318,1267,0,3,train,low
+83,1963_dev_plan_p0006_b00,1963_dev_plan,1963,"University of Pennsylvania Development Plan (for City Planning Commission, February 1963)",final,6,349,716,1463,924,0,5,val,low
+84,1963_dev_plan_taubin_p0030_b01,1963_dev_plan_taubin,1963,"University of Pennsylvania Development Plan, 1963 (Taubin file copy)",final,30,139,920,1434,1057,0,3,val,mid
+85,1966_campus_dev_plan_p0008_b00,1966_campus_dev_plan,1966,"University of Pennsylvania Campus Development Plan (third edition, April 1966)",final,8,345,216,1421,465,0,4,test,high
+86,1966_campus_dev_plan_ua_p0015_b01,1966_campus_dev_plan_ua,1966,"Campus Development Plan, 1966 (University Architect records copy)",final,15,445,473,1492,680,0,4,test,high
+87,1977_landscape_dev_plan_p0085_b01,1977_landscape_dev_plan,1977,"Landscape Development Plan (Center for Environmental Design, February 1977)",final,85,179,151,1096,410,0,6,train,mid
+88,1979_campus_dev_plan_interim_p0034_b00,1979_campus_dev_plan_interim,1979,"University of Pennsylvania Development Plan, Interim Report (October 1979)",draft,34,400,243,1625,564,0,5,train,low
+89,1981_campus_dev_plan_reports_p0129_b03,1981_campus_dev_plan_reports,1982,"Campus Development Plan, 1981-82 Reports",final,129,1209,953,2021,1075,0,3,train,high
+90,1982_campus_dev_plan_reports_p0070_b04,1982_campus_dev_plan_reports,1983,"Campus Development Plan, 1982-83 Reports",final,70,1140,593,1945,754,0,4,train,low
+91,1983_campus_dev_plan_reports_p0178_b00,1983_campus_dev_plan_reports,1984,"Campus Development Plan, 1983-84 Reports",final,178,278,363,1409,594,0,6,train,low
+92,1987_campus_master_plan_draft_p0019_b05,1987_campus_master_plan_draft,1987,Campus Master Plan draft and correspondence (1987),draft,19,180,996,1245,1147,0,4,train,mid
+93,1992_master_land_use_plan_p0015_b06,1992_master_land_use_plan,1992,"Master Land Use Plan, preliminary (Venturi, Scott Brown and Associates, October 1992)",draft,15,142,1126,1062,1338,0,6,train,low
+94,1998_campus_dev_plan_brief_p0019_b04,1998_campus_dev_plan_brief,1998,"Campus Development Plan, Executive Brief 1998",final,19,834,1380,1409,1515,0,4,test,low
