@@ -67,6 +67,18 @@ def candidates(page: dict) -> list[dict]:
         cy0 = max(0, min([y0] + [r[1] for r in row_boxes]) - PAD)
         cx1 = min(page["width"], max([x1] + [r[2] for r in row_boxes]) + PAD)
         cy1 = min(page["height"], max([y1] + [r[3] for r in row_boxes]) + PAD)
+        # The layout model sometimes splits a paragraph mid-way, so the line just
+        # above or below is not part of this sample but pokes into the crop.
+        # Pull the edge in so the annotator never sees half a line.
+        top, bottom = row_boxes[0][1], row_boxes[-1][3]
+        for l in page["lines"]:
+            lx0, ly0, lx1, ly1 = l["box"][:4]
+            if any(l is m for m in inside) or min(lx1, cx1) - max(lx0, cx0) <= 0:
+                continue
+            if (ly0 + ly1) / 2 < top and ly1 > cy0:
+                cy0 = max(cy0, min(ly1, top) - 2)
+            if (ly0 + ly1) / 2 > bottom and ly0 < cy1:
+                cy1 = min(cy1, max(ly0, bottom) + 2)
         out.append(dict(
             doc_id=page["doc_id"], page=page["page"], rotation=page["rotation"], block=bi,
             box=[cx0, cy0, cx1, cy1],
