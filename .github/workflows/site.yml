@@ -1,0 +1,66 @@
+name: Build and publish site
+
+# Builds the slide deck on every pull request that touches it, and on main
+# publishes the GitHub Pages site:
+#   /         docs/index.html (links to everything)
+#   /demo/    the recorded assistant demo (docs/demo)
+#   /slides/  the presentation deck (slides/, built with Vite)
+
+on:
+  push:
+    branches: [main]
+    paths: ["slides/**", "docs/**", ".github/workflows/site.yml"]
+  pull_request:
+    paths: ["slides/**", "docs/**", ".github/workflows/site.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: slides/package-lock.json
+
+      - name: Install and build the deck (type-check + Vite build)
+        working-directory: slides
+        run: |
+          npm ci
+          npm run build
+
+      - name: Assemble the site
+        run: |
+          mkdir -p _site
+          cp -R docs/. _site/
+          cp -R slides/dist _site/slides
+          touch _site/.nojekyll
+          ls -R _site | head -40
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
