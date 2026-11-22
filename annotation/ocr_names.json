@@ -1,0 +1,277 @@
+{
+ "note": "Institutional and place names in the OCR ground truth, for the exact-match measure in penn_ocr.entities. Candidates were extracted by pattern (python -m penn_ocr.entities --candidates) and reviewed: generic words (\"University\", \"the Committee\"), titles of documents and fragments were dropped. Type rule: an organisation or body is an institution; a street, district, open space or building is a place. The bare word \"University\" (32 occurrences) is left out because it would inflate the institution count with an easy token.",
+ "names": [
+  {
+   "name": "University of Pennsylvania",
+   "type": "institution"
+  },
+  {
+   "name": "Architects Committee",
+   "type": "institution"
+  },
+  {
+   "name": "Law School",
+   "type": "institution"
+  },
+  {
+   "name": "Philadelphia City Planning Commission",
+   "type": "institution"
+  },
+  {
+   "name": "Annenberg School",
+   "type": "institution"
+  },
+  {
+   "name": "Christian Association",
+   "type": "institution"
+  },
+  {
+   "name": "Graduate School of Education",
+   "type": "institution"
+  },
+  {
+   "name": "Institute of Hygiene",
+   "type": "institution"
+  },
+  {
+   "name": "John Harrison Laboratory of Chemistry",
+   "type": "institution"
+  },
+  {
+   "name": "Medical School",
+   "type": "institution"
+  },
+  {
+   "name": "Philadelphia Redevelopment Authority",
+   "type": "institution"
+  },
+  {
+   "name": "School of Social Work",
+   "type": "institution"
+  },
+  {
+   "name": "School of Veterinary Medicine",
+   "type": "institution"
+  },
+  {
+   "name": "Smith Chemistry Laboratory",
+   "type": "institution"
+  },
+  {
+   "name": "Trustees Committee on Physical Development",
+   "type": "institution"
+  },
+  {
+   "name": "University Museum",
+   "type": "institution"
+  },
+  {
+   "name": "University Planning Office",
+   "type": "institution"
+  },
+  {
+   "name": "Veterinary School",
+   "type": "institution"
+  },
+  {
+   "name": "Wharton School",
+   "type": "institution"
+  },
+  {
+   "name": "City of Philadelphia",
+   "type": "institution"
+  },
+  {
+   "name": "West Philadelphia",
+   "type": "place"
+  },
+  {
+   "name": "Southwest Philadelphia",
+   "type": "place"
+  },
+  {
+   "name": "Philadelphia",
+   "type": "place"
+  },
+  {
+   "name": "Center City",
+   "type": "place"
+  },
+  {
+   "name": "University City",
+   "type": "place"
+  },
+  {
+   "name": "University Redevelopment Area",
+   "type": "place"
+  },
+  {
+   "name": "Locust Walk",
+   "type": "place"
+  },
+  {
+   "name": "Smith Walk",
+   "type": "place"
+  },
+  {
+   "name": "Hamilton Walk",
+   "type": "place"
+  },
+  {
+   "name": "Woodland Walk",
+   "type": "place"
+  },
+  {
+   "name": "University Avenue",
+   "type": "place"
+  },
+  {
+   "name": "Woodland Avenue",
+   "type": "place"
+  },
+  {
+   "name": "Baltimore Avenue",
+   "type": "place"
+  },
+  {
+   "name": "Girard Avenue",
+   "type": "place"
+  },
+  {
+   "name": "Walnut Street",
+   "type": "place"
+  },
+  {
+   "name": "Walnut Streets",
+   "type": "place"
+  },
+  {
+   "name": "Chestnut Street",
+   "type": "place"
+  },
+  {
+   "name": "Chestnut Streets",
+   "type": "place"
+  },
+  {
+   "name": "Sansom Street",
+   "type": "place"
+  },
+  {
+   "name": "Sansom Streets",
+   "type": "place"
+  },
+  {
+   "name": "Spruce Street",
+   "type": "place"
+  },
+  {
+   "name": "Spruce Streets",
+   "type": "place"
+  },
+  {
+   "name": "Market Street",
+   "type": "place"
+  },
+  {
+   "name": "31st Street",
+   "type": "place"
+  },
+  {
+   "name": "34th Street",
+   "type": "place"
+  },
+  {
+   "name": "37th Street",
+   "type": "place"
+  },
+  {
+   "name": "38th Street",
+   "type": "place"
+  },
+  {
+   "name": "40th Street",
+   "type": "place"
+  },
+  {
+   "name": "30th Street Station",
+   "type": "place"
+  },
+  {
+   "name": "Grays Ferry Avenue Bridge",
+   "type": "place"
+  },
+  {
+   "name": "Blue Bridge",
+   "type": "place"
+  },
+  {
+   "name": "College Green",
+   "type": "place"
+  },
+  {
+   "name": "Houston Hall Green",
+   "type": "place"
+  },
+  {
+   "name": "Levy Park",
+   "type": "place"
+  },
+  {
+   "name": "Steitler Plaza",
+   "type": "place"
+  },
+  {
+   "name": "Murphy Field",
+   "type": "place"
+  },
+  {
+   "name": "Bower Field",
+   "type": "place"
+  },
+  {
+   "name": "College Hall",
+   "type": "place"
+  },
+  {
+   "name": "Logan Hall",
+   "type": "place"
+  },
+  {
+   "name": "Annenberg Center",
+   "type": "place"
+  },
+  {
+   "name": "Civic Center",
+   "type": "place"
+  },
+  {
+   "name": "Revlon Center",
+   "type": "place"
+  },
+  {
+   "name": "Levy Tennis Pavilion",
+   "type": "place"
+  },
+  {
+   "name": "Chemistry Building",
+   "type": "place"
+  },
+  {
+   "name": "Franklin Building",
+   "type": "place"
+  },
+  {
+   "name": "Smith Building",
+   "type": "place"
+  },
+  {
+   "name": "Physics Building",
+   "type": "place"
+  },
+  {
+   "name": "Law School Building",
+   "type": "place"
+  }
+ ]
+}
