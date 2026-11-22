@@ -2,8 +2,7 @@
 
 AI for sustainability final project: semantic analysis and AI-assisted
 exploration of Penn's historical campus master plans. The full plan is in
-[VISION.md](VISION.md). Part 1 is done except the semantic analysis (1.5);
-Part 2 is built and evaluated.
+[VISION.md](VISION.md). Parts 1 and 2 are done.
 
 | Vision step | State |
 |---|---|
@@ -12,7 +11,7 @@ Part 2 is built and evaluated.
 | 1.3 Mini human validator, sampling, splits | done; 92 usable paragraphs, 14 double-keyed, mismatched lines checked |
 | 1.4 OCR benchmark | done: CER/WER, exact match of dates, numbers and names, interpretation-affecting errors, cost and speed (`docs/ocr_models.md`) |
 | Full-corpus transcription | done: 1,787 pages; 471 doubtful pages reviewed by hand; prose blocks flagged |
-| 1.5 Semantic analysis | not started |
+| 1.5 Semantic analysis | done: themes, clusters, plan similarity, carried-over text, OCR sensitivity ([docs/semantic_report.md](docs/semantic_report.md)) |
 | 2.1-2.3 Retrieval, answering, local chatbot | done (`penn_rag/`, `app/chatbot.py`, recorded demo in `docs/demo/`) |
 | 2.4 Retrieval and answer evaluation | done on 18 questions; results and limits in [docs/rag_report.md](docs/rag_report.md) |
 
@@ -156,3 +155,11 @@ then at `/demo/`).
 The recordings live in `docs/demo/data.js`. Passages the answers cite are
 included in full; other retrieved passages are cut to about 320 characters.
 
+## Semantic analysis (Vision 1.5)
+
+    python -m penn_semantic.embed          # passage embeddings (same model as retrieval)
+    python -m penn_semantic.analyze        # themes, clusters, plan similarity, carried-over text
+    python -m penn_semantic.figures        # docs/semantic/*.png
+    python -m penn_semantic.sensitivity    # does OCR error change the embeddings?
+
+Findings, method and limits: [docs/semantic_report.md](docs/semantic_report.md).
