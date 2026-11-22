@@ -163,3 +163,21 @@ included in full; other retrieved passages are cut to about 320 characters.
     python -m penn_semantic.sensitivity    # does OCR error change the embeddings?
 
 Findings, method and limits: [docs/semantic_report.md](docs/semantic_report.md).
+
+## Presentation
+
+`slides/` is an interactive slide deck (Vite, React, TypeScript): 17 slides
+that follow the project in order, from the archive through OCR, corpus and
+semantic analysis to the assistant and its evaluation. Charts respond to hover
+and clicks, the OCR examples show the scan beside the text, and the recorded
+assistant runs can be replayed with their citations.
+
+    python slides/export_data.py          # numbers and images from the pipeline's outputs -> slides/src/data/
+    cd slides && npm install && npm run dev       # http://localhost:8521
+    npm run build                         # static copy in slides/dist/, works from any folder
+
+Arrow keys or space step through each slide; `f` is full screen; the dots and
+section names at the bottom jump to any slide. The deck has three looks, each a
+reproduction of the archive: **Folder** (typed sheets in an archive folder),
+**Blueprint** (diazo planning drawings) and **Print** (a 1960s development plan).
+Switch with the buttons at the bottom or the `t` key; the choice is remembered.

@@ -51,6 +51,12 @@
         "docs/demo"
       ],
       "port": 8520
+    },
+    {
+      "name": "slides",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "slides", "--", "--port", "8521", "--strictPort"],
+      "port": 8521
     }
   ]
 }
