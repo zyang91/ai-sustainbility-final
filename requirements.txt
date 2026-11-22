@@ -16,3 +16,9 @@ scikit-image
 pyclipper
 shapely
 # optional comparison baseline: pip install "python-doctr[torch]"
+# Part 2: retrieval and the local chatbot (the language model runs in Ollama)
+sentence-transformers
+chromadb
+requests
+# optional: fluency score recorded by penn_ocr.fluency
+transformers

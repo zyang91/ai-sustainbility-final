@@ -224,3 +224,6 @@ data/
 .DS_Store
 # Derived images, model outputs and the PaddleOCR training checkout
 work/
+
+# design skill working files
+.taste-skill/

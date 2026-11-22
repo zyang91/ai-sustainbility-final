@@ -53,6 +53,25 @@ _DOCS = [
      "Penn Connects 2.0", "final", 1),
 ]
 
+# Second scans of a plan that is already in the archive. Measured on the prose
+# blocks, 93-99% of each text is also in its twin. They stay in the corpus
+# (the benchmark sampled them as separate scans) but are left out of the
+# analysis so a year is not counted twice. The library (UPLND) copy is the one
+# kept: the 1961 Taubin desk copy holds the plan twice, and the 1966 University
+# Architect scan lost whole lines in the OCR benchmark.
+DUPLICATE_OF = {
+    "1961_dev_plan_taubin": "1961_dev_plan",
+    "1963_dev_plan_taubin": "1963_dev_plan",
+    "1966_campus_dev_plan_ua": "1966_campus_dev_plan",
+}
+
+
+def report_id(doc_id: str) -> str:
+    """The unit of analysis. Penn Connects 3.0 was published as many small
+    PDFs; together they are one report. Every other document is its own."""
+    return "2018_penn_connects_3" if doc_id.startswith("2018_") else doc_id
+
+
 FIELDS = ["doc_id", "path", "year", "title", "status", "source", "n_pages",
           "first_content_page"]
 
@@ -100,6 +119,8 @@ def load() -> list[dict]:
     for r in rows:
         for k in ("year", "n_pages", "first_content_page"):
             r[k] = int(r[k])
+        r["report"] = report_id(r["doc_id"])
+        r["duplicate_of"] = DUPLICATE_OF.get(r["doc_id"], "")
     return rows
 
 
