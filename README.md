@@ -10,7 +10,7 @@ Part 2 is built and evaluated.
 | 1.1 Archive assembled, metadata recorded | done ([annotation/documents.csv](annotation/documents.csv)) |
 | 1.2 Open-source OCR baseline, fine-tuning | done; fine-tuning ties the pretrained model on test, so the pretrained model is used (`docs/ocr_models.md`) |
 | 1.3 Mini human validator, sampling, splits | done; 92 usable paragraphs, 14 double-keyed, mismatched lines checked |
-| 1.4 OCR benchmark | pretrained vs fine-tuned scored with CER/WER; secondary measures (dates, numbers, names) not done |
+| 1.4 OCR benchmark | done: CER/WER, exact match of dates, numbers and names, interpretation-affecting errors, cost and speed (`docs/ocr_models.md`) |
 | Full-corpus transcription | done: 1,787 pages; 471 doubtful pages reviewed by hand; prose blocks flagged |
 | 1.5 Semantic analysis | not started |
 | 2.1-2.3 Retrieval, answering, local chatbot | done (`penn_rag/`, `app/chatbot.py`, recorded demo in `docs/demo/`) |
