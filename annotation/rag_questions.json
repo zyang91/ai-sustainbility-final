@@ -1,0 +1,321 @@
+{
+ "note": "Evaluation questions for Vision 2.4. `gold` is a list of groups; each group lists [doc_id, page] pairs, any one of which holds the evidence. A comparison question has one group per period. `facts` are patterns a correct answer must contain. Gold pages were found by keyword search of the corpus (not with the retriever under test) and read; they have not yet been confirmed by a second person.",
+ "questions": [
+  {
+   "id": "acres-1961",
+   "kind": "fact",
+   "question": "How many acres did the campus occupy according to the 1961 Development Plan, and how many more did the plan call for?",
+   "gold": [
+    [
+     [
+      "1961_dev_plan",
+      31
+     ]
+    ]
+   ],
+   "facts": [
+    "140",
+    "110"
+   ]
+  },
+  {
+   "id": "density-1966",
+   "kind": "fact",
+   "question": "What student density per acre did the 1966 Campus Development Plan use?",
+   "gold": [
+    [
+     [
+      "1966_campus_dev_plan",
+      14
+     ]
+    ]
+   ],
+   "facts": [
+    "150"
+   ]
+  },
+  {
+   "id": "spaces-1979",
+   "kind": "fact",
+   "question": "According to the 1979 Interim Report, how many on-campus parking spaces were there?",
+   "gold": [
+    [
+     [
+      "1979_campus_dev_plan_interim",
+      56
+     ]
+    ]
+   ],
+   "facts": [
+    "4,?500"
+   ]
+  },
+  {
+   "id": "municipal-1948",
+   "kind": "fact",
+   "question": "What did the 1948 Trustees' Committee suggest for the area bounded by 32nd, 34th, Walnut and Chestnut Streets?",
+   "gold": [
+    [
+     [
+      "1948_physical_dev_report",
+      6
+     ]
+    ]
+   ],
+   "facts": [
+    "municipal"
+   ]
+  },
+  {
+   "id": "postal-2006",
+   "kind": "fact",
+   "question": "How many acres do the postal properties cover according to Penn Connects (2006)?",
+   "gold": [
+    [
+     [
+      "2006_penn_connects",
+      8
+     ],
+     [
+      "2006_penn_connects",
+      34
+     ]
+    ]
+   ],
+   "facts": [
+    "\\b24\\b"
+   ]
+  },
+  {
+   "id": "beds-2012",
+   "kind": "fact",
+   "question": "How many beds was the new College House planned to have in Penn Connects 2.0 (2012)?",
+   "gold": [
+    [
+     [
+      "2012_penn_connects_2",
+      21
+     ]
+    ]
+   ],
+   "facts": [
+    "\\b350\\b"
+   ]
+  },
+  {
+   "id": "pennpark-2012",
+   "kind": "fact",
+   "question": "How large is Penn Park according to Penn Connects 2.0 (2012)?",
+   "gold": [
+    [
+     [
+      "2012_penn_connects_2",
+      3
+     ]
+    ]
+   ],
+   "facts": [
+    "\\b24\\b"
+   ]
+  },
+  {
+   "id": "tartan-1998",
+   "kind": "fact",
+   "question": "What is the \"tartan grid\" concept in the 1998 Campus Development Master Plan?",
+   "gold": [
+    [
+     [
+      "1998_campus_dev_master_plan",
+      74
+     ]
+    ]
+   ],
+   "facts": [
+    "pedestrian"
+   ]
+  },
+  {
+   "id": "sansom-1998",
+   "kind": "fact",
+   "question": "What is Sansom Common, according to the 1998 Executive Brief?",
+   "gold": [
+    [
+     [
+      "1998_campus_dev_plan_brief",
+      40
+     ]
+    ]
+   ],
+   "facts": [
+    "Walnut",
+    "Chestnut"
+   ]
+  },
+  {
+   "id": "transit-1978",
+   "kind": "fact",
+   "question": "What alternatives to more parking did the 1978 Framework for Campus Planning raise?",
+   "gold": [
+    [
+     [
+      "1978_framework_campus_planning",
+      45
+     ]
+    ]
+   ],
+   "facts": [
+    "transit",
+    "bicycl"
+   ]
+  },
+  {
+   "id": "woodland-1992",
+   "kind": "fact",
+   "question": "What did the 1992 Master Land Use Plan say happened to Woodland Avenue?",
+   "gold": [
+    [
+     [
+      "1992_master_land_use_plan",
+      6
+     ]
+    ]
+   ],
+   "facts": [
+    "clos",
+    "1950"
+   ]
+  },
+  {
+   "id": "parking-1961",
+   "kind": "table",
+   "question": "How many off-street parking spaces did the 1961 Development Plan project for 1970?",
+   "gold": [
+    [
+     [
+      "1961_dev_plan",
+      28
+     ],
+     [
+      "1961_dev_plan",
+      29
+     ]
+    ]
+   ],
+   "facts": [
+    "3,?300"
+   ]
+  },
+  {
+   "id": "cars-1977",
+   "kind": "fact",
+   "question": "According to the 1977 Landscape Development Plan, how many campus off-street parking spaces were there, and how many acres did they cover?",
+   "gold": [
+    [
+     [
+      "1977_landscape_dev_plan",
+      42
+     ]
+    ]
+   ],
+   "facts": [
+    "4,?132",
+    "30\\.8"
+   ]
+  },
+  {
+   "id": "parking-change",
+   "kind": "over_time",
+   "question": "How did Penn's approach to parking change between the 1960s and the 1970s?",
+   "gold": [
+    [
+     [
+      "1961_dev_plan",
+      43
+     ],
+     [
+      "1963_dev_plan",
+      31
+     ],
+     [
+      "1966_campus_dev_plan",
+      32
+     ]
+    ],
+    [
+     [
+      "1977_landscape_dev_plan",
+      42
+     ],
+     [
+      "1979_campus_dev_plan_interim",
+      56
+     ],
+     [
+      "1978_framework_campus_planning",
+      45
+     ]
+    ]
+   ],
+   "facts": []
+  },
+  {
+   "id": "pedestrian-change",
+   "kind": "over_time",
+   "question": "How did the plans' treatment of pedestrian circulation change from the 1960s to the 1990s?",
+   "gold": [
+    [
+     [
+      "1961_dev_plan",
+      41
+     ],
+     [
+      "1963_dev_plan",
+      29
+     ],
+     [
+      "1966_campus_dev_plan",
+      29
+     ]
+    ],
+    [
+     [
+      "1977_landscape_dev_plan",
+      8
+     ]
+    ],
+    [
+     [
+      "1992_master_land_use_plan",
+      6
+     ],
+     [
+      "1998_campus_dev_master_plan",
+      74
+     ]
+    ]
+   ],
+   "facts": []
+  },
+  {
+   "id": "singapore",
+   "kind": "absent",
+   "question": "What did the plans say about building a campus in Singapore?",
+   "gold": [],
+   "facts": []
+  },
+  {
+   "id": "covid",
+   "kind": "absent",
+   "question": "How did the plans respond to the COVID-19 pandemic?",
+   "gold": [],
+   "facts": []
+  },
+  {
+   "id": "tuition-1961",
+   "kind": "absent",
+   "question": "What tuition did the 1961 Development Plan propose?",
+   "gold": [],
+   "facts": []
+  }
+ ]
+}

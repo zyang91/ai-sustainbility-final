@@ -2,8 +2,8 @@
 
 AI for sustainability final project: semantic analysis and AI-assisted
 exploration of Penn's historical campus master plans. The full plan is in
-[VISION.md](VISION.md). This repository currently covers Part 1 up to the
-ground-truth stage.
+[VISION.md](VISION.md). Part 1 is done except the semantic analysis (1.5);
+Part 2 is built and evaluated.
 
 | Vision step | State |
 |---|---|
@@ -11,7 +11,10 @@ ground-truth stage.
 | 1.2 Open-source OCR baseline, fine-tuning | done; fine-tuning ties the pretrained model on test, so the pretrained model is used (`docs/ocr_models.md`) |
 | 1.3 Mini human validator, sampling, splits | done; 92 usable paragraphs, 14 double-keyed, mismatched lines checked |
 | 1.4 OCR benchmark | pretrained vs fine-tuned scored with CER/WER; secondary measures (dates, numbers, names) not done |
-| Full-corpus transcription | `penn_ocr.page_ocr --all` then `penn_ocr.corpus` -> `work/corpus/` |
+| Full-corpus transcription | done: 1,787 pages; 471 doubtful pages reviewed by hand; prose blocks flagged |
+| 1.5 Semantic analysis | not started |
+| 2.1-2.3 Retrieval, answering, local chatbot | done (`penn_rag/`, `app/chatbot.py`, recorded demo in `docs/demo/`) |
+| 2.4 Retrieval and answer evaluation | done on 18 questions; results and limits in [docs/rag_report.md](docs/rag_report.md) |
 
 ## Set-up
 
@@ -44,6 +47,18 @@ Full-corpus transcription with the selected (pretrained) model:
 
     python -m penn_ocr.page_ocr --all     # every page of the 17 scans, about 6 h on CPU, resumable
     python -m penn_ocr.corpus             # paragraphs.jsonl + one .txt per document in work/corpus/
+
+Page review, for the pages where the automatic result is doubtful (text the
+layout model filed under a figure, pages with little or no text, low
+confidence). One click per page; decisions are logged in
+`annotation/page_checks.jsonl` and applied the next time the corpus is built:
+
+    streamlit run app/page_review.py
+    python -m penn_ocr.corpus             # rebuild with the page decisions applied
+
+Each block in `paragraphs.jsonl` carries a `prose` flag: true for running
+sentences, false for titles, headers, tables, map labels and low-confidence
+fragments. The semantic analysis reads only the prose blocks.
 
 The 2006-2018 plans are born-digital; `penn_ocr.corpus` reads their text
 layer directly instead of running OCR.
@@ -105,3 +120,39 @@ that residual overlap is a known limit of a small archive.
 
 Human transcriptions are the only ground truth. Model output is always
 scored against them and never used as a reference.
+
+## Part 2: research assistant
+
+A local, source-grounded chatbot over the corpus (`penn_rag/`, `app/chatbot.py`).
+
+    python -m penn_rag.passages           # prose blocks -> about 1,700 passages with document, year, pages
+    python -m penn_rag.index              # sentence-transformers vectors -> ChromaDB in work/rag/chroma/
+    ollama pull llama3.1:8b               # the local language model (needs Ollama running)
+    streamlit run app/chatbot.py
+
+- **Passages.** Only prose blocks; second scans of the same plan are left out.
+  Neighbouring blocks are joined to about 1,000 characters and keep their
+  section heading, source PDF and page range.
+- **Retrieval.** `BAAI/bge-base-en-v1.5` vectors in ChromaDB, with filters for
+  plan year and draft/final status. "Compare plans" takes the best passages
+  from every plan in range, so long reports do not crowd out short ones.
+- **Answering.** The model sees only numbered passages and must cite them;
+  the app lists cited and uncited sources and can show the original page.
+  In agent mode the model chooses its own searches and year ranges.
+- Without Ollama the app still searches and shows passages, with no answer.
+
+### Recorded web demo
+
+`docs/demo/` is a static page (plain HTML, CSS and JavaScript, no backend) that
+replays six saved runs of the assistant: the searches, the answer as the model
+wrote it, the cited passages, and a line written by a person saying whether
+the answer matches its sources. One of the six is kept because it is wrong.
+Nothing runs when the page is used, so it can be hosted on GitHub Pages
+(Settings, Pages, deploy from the `main` branch, folder `/docs`; the page is
+then at `/demo/`).
+
+    python3 -m http.server 8520 --directory docs/demo     # view it locally
+
+The recordings live in `docs/demo/data.js`. Passages the answers cite are
+included in full; other retrieved passages are cut to about 320 characters.
+

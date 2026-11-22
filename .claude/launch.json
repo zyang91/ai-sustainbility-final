@@ -4,8 +4,53 @@
     {
       "name": "validator",
       "runtimeExecutable": "/opt/anaconda3/envs/penn-ocr/bin/streamlit",
-      "runtimeArgs": ["run", "app/validator.py", "--server.port", "8517", "--server.headless", "true"],
+      "runtimeArgs": [
+        "run",
+        "app/validator.py",
+        "--server.port",
+        "8517",
+        "--server.headless",
+        "true"
+      ],
       "port": 8517
+    },
+    {
+      "name": "page-review",
+      "runtimeExecutable": "/opt/anaconda3/envs/penn-ocr/bin/streamlit",
+      "runtimeArgs": [
+        "run",
+        "app/page_review.py",
+        "--server.port",
+        "8518",
+        "--server.headless",
+        "true"
+      ],
+      "port": 8518
+    },
+    {
+      "name": "chatbot",
+      "runtimeExecutable": "/opt/anaconda3/envs/penn-ocr/bin/streamlit",
+      "runtimeArgs": [
+        "run",
+        "app/chatbot.py",
+        "--server.port",
+        "8519",
+        "--server.headless",
+        "true"
+      ],
+      "port": 8519
+    },
+    {
+      "name": "demo",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8520",
+        "--directory",
+        "docs/demo"
+      ],
+      "port": 8520
     }
   ]
 }

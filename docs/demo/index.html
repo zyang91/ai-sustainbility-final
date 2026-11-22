@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Penn Plan Archive: recorded demo</title>
+<meta name="description" content="A recorded demo of a research assistant that answers questions about the University of Pennsylvania's campus plans, 1948 to 2018, and cites plan and page.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Framed sheet. Grid at 1440: sidebar 228 + sheet (1440 - 228 - 8 = 1204); inside the sheet
+   24 + answer column (1fr = 748) + 24 + sources rail 384 + 24 = 1204. */
+:root {
+  --ground: #f5f7fa; --surface: #ffffff; --raised: #f4f6f8; --active: #e9ecef;
+  --border: #e8eaec; --rule: #f0f1f2; --control: #cdced1;
+  --text: #131416; --muted: #5d5f60;
+  --accent: #1d4f91;            /* Penn blue, lifted so it reads as a hue beside the ink */
+  --positive: #1e7b4f; --negative: #c4242a;
+  --pill-positive-bg: #dcfae5; --pill-positive-ink: #04250e;
+  --pill-negative-bg: #ffedea; --pill-negative-ink: #831c1e;
+  --pill-warning-bg: #fffbeb; --pill-warning-ink: #92400e;
+  --pill-neutral-bg: #ebedee; --pill-neutral-ink: #353736;
+  --radius-card: 8px; --radius-control: 6px; --radius-sheet: 16px;
+  --gap: 24px; --pad: 24px; --sidebar: 228px;
+  --font: "IBM Plex Sans", Inter, system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--ground); color: var(--text); font: 400 14px/20px var(--font);
+       font-variant-numeric: tabular-nums; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; cursor: pointer; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.app { display: grid; grid-template-columns: var(--sidebar) minmax(0, 1fr); min-height: 100vh; }
+
+/* ---- sidebar ---- */
+.side { padding: 14px 12px 16px; display: flex; flex-direction: column; gap: 4px;
+        position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+.brand { display: flex; align-items: center; gap: 10px; padding: 2px 8px 0; height: 34px; }
+.brand svg { flex: none; }
+.brand b { font-weight: 600; font-size: 14px; }
+.scope { margin: 0 8px 10px; color: var(--muted); font-size: 12px; line-height: 16px; }
+.group { margin: 14px 8px 6px; color: var(--muted); font-size: 12px; }
+.q { display: block; width: 100%; text-align: left; border: 0; background: none; border-radius: 8px;
+     padding: 8px; line-height: 18px; font-size: 13px; color: #3a3c3d; }
+.q:hover { background: #eef0f3; }
+.q[aria-current="true"] { background: var(--active); color: var(--text); }
+.q small { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; }
+.side .foot { margin-top: auto; padding: 12px 8px 0; color: var(--muted); font-size: 12px; line-height: 17px; }
+.side .foot a { color: var(--text); }
+
+/* ---- sheet ---- */
+.main { min-width: 0; display: flex; flex-direction: column; padding: 0 8px 8px 0; }
+.bar { height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+       padding: 0 8px 0 4px; color: var(--muted); font-size: 13px; }
+.bar a { color: var(--text); text-underline-offset: 3px; }
+.sheet { flex: 1; background: var(--surface); border: 1px solid var(--border);
+         border-radius: var(--radius-sheet); padding: var(--pad); min-width: 0; }
+
+.head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px var(--gap); align-items: start; }
+h1 { margin: 0; font-size: 22px; line-height: 28px; font-weight: 600; letter-spacing: -0.01em; max-width: 40ch; }
+.sub { margin: 6px 0 0; color: var(--muted); }
+.actions { display: flex; gap: 8px; }
+.btn { height: 32px; padding: 0 12px; border-radius: var(--radius-control); border: 1px solid var(--control);
+       background: var(--surface); font-weight: 500; white-space: nowrap; }
+.btn:hover { background: var(--raised); }
+.btn.primary { background: #1d1f20; border-color: #1d1f20; color: #fff; }
+.btn.primary:hover { background: #2c2f31; }
+.btn:active { transform: translateY(1px); }
+
+.pill { display: inline-flex; align-items: center; height: 20px; padding: 0 8px; border-radius: 999px;
+        font-size: 12px; font-weight: 500; white-space: nowrap; flex: none; }
+.pill.ok { background: var(--pill-positive-bg); color: var(--pill-positive-ink); }
+.pill.bad { background: var(--pill-negative-bg); color: var(--pill-negative-ink); }
+.pill.warn { background: var(--pill-warning-bg); color: var(--pill-warning-ink); }
+.pill.flat { background: var(--pill-neutral-bg); color: var(--pill-neutral-ink); }
+
+/* the check: the screen's finding, read first */
+.check { margin: var(--gap) 0 0; display: flex; gap: 10px; align-items: baseline; }
+.check p { margin: 0; max-width: 92ch; }
+
+/* plan timeline: every plan in the archive on a true time axis */
+.years { margin-top: var(--gap); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 16px 20px 14px; }
+.years header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.years h2 { margin: 0; font-size: 14px; font-weight: 600; }
+.legend { display: flex; gap: 16px; color: var(--muted); font-size: 12px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: 0; }
+.legend .cited i { background: var(--accent); }
+.legend .seen i { background: var(--surface); border: 1.5px solid var(--accent); }
+.legend .none i { background: var(--control); }
+.years .axis { margin-top: 8px; }
+.years svg { display: block; overflow: visible; }
+.years text { font: 400 12px var(--font); fill: var(--muted); }
+.years text.on { fill: var(--text); font-weight: 500; }
+
+.cols { margin-top: var(--gap); display: grid; grid-template-columns: minmax(0, 1fr) 384px; gap: var(--gap); align-items: start; }
+h2.sec { margin: 0 0 8px; font-size: 16px; font-weight: 600; }
+.steps { margin: 0 0 12px; padding: 0; list-style: none; color: var(--muted); font-size: 13px; }
+.steps li { padding: 2px 0; }
+.steps b { color: var(--text); font-weight: 500; }
+.answer { font-size: 15px; line-height: 24px; max-width: 72ch; }
+.answer p { margin: 0 0 12px; }
+.answer ul { margin: 0 0 12px; padding-left: 20px; }
+.answer li { margin-bottom: 6px; }
+.ref { display: inline-block; min-width: 20px; height: 20px; padding: 0 5px; margin: 0 1px; border: 0;
+       border-radius: 4px; background: #e6edf6; color: var(--accent); font-size: 12px; font-weight: 600;
+       line-height: 20px; text-align: center; vertical-align: 1px; }
+.ref:hover, .ref.hot { background: var(--accent); color: #fff; }
+.caret::after { content: ""; display: inline-block; width: 7px; height: 16px; background: var(--text);
+                vertical-align: -3px; margin-left: 2px; animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.src { border: 1px solid var(--border); border-radius: var(--radius-card); }
+.src > header { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 16px 10px; }
+.src h2 { margin: 0; font-size: 14px; font-weight: 600; }
+.src > header span { color: var(--muted); font-size: 12px; }
+.item { border-top: 1px solid var(--rule); }
+.item > button { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 0 8px; width: 100%;
+                 padding: 10px 16px; border: 0; background: none; text-align: left; align-items: start; }
+.item > button:hover { background: var(--raised); }
+.item.hot > button { background: #eef3fa; }
+.n { font-weight: 600; color: var(--accent); }
+.item.uncited .n { color: var(--muted); font-weight: 400; }
+.t { font-weight: 500; line-height: 18px; }
+.item.uncited .t { font-weight: 400; color: #3a3c3d; }
+.m { grid-column: 2 / 4; margin-top: 2px; color: var(--muted); font-size: 12px; line-height: 16px; }
+.yr { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.passage { margin: 0; padding: 2px 16px 14px 50px; color: #2b2d2e; font-size: 13px; line-height: 20px;
+           white-space: pre-wrap; overflow-wrap: anywhere; }
+.passage.table { font-size: 12px; line-height: 18px; }
+.more { display: block; width: 100%; border: 0; border-top: 1px solid var(--rule); background: none;
+        padding: 10px 16px; text-align: left; color: var(--muted); font-size: 13px; border-radius: 0 0 8px 8px; }
+.more:hover { background: var(--raised); color: var(--text); }
+.note { margin: var(--gap) 0 0; color: var(--muted); font-size: 12px; line-height: 18px; max-width: 110ch; }
+
+.pick { display: none; }
+
+@media (max-width: 1100px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .side { display: none; }
+  .main { padding: 0; }
+  .bar { padding: 0 16px; height: 48px; }
+  .bar .long { display: none; }
+  .sheet { border-radius: 0; border-left: 0; border-right: 0; border-bottom: 0; padding: 20px 16px 32px; }
+  .pick { display: block; margin-bottom: 16px; }
+  .pick label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .pick select { width: 100%; height: 44px; border: 1px solid var(--control); border-radius: var(--radius-control);
+                 background: var(--surface); font: inherit; padding: 0 10px; color: var(--text); }
+  .cols { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .head { grid-template-columns: minmax(0, 1fr); }
+  h1 { font-size: 20px; line-height: 26px; }
+  .btn { height: 44px; }
+  .check { flex-direction: column; gap: 6px; }
+  .years { padding: 14px 14px 12px; }
+  .passage { padding-left: 16px; }
+  .item > button { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { .caret::after { animation: none; } .btn:active { transform: none; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <nav class="side" aria-label="Recorded questions">
+    <div class="brand">
+      <!-- a plan sheet with a page corner turned: the archive's object -->
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+        <path d="M4 2h9l5 5v13H4z" fill="#1d4f91"/><path d="M13 2v5h5z" fill="#9db6d8"/>
+        <path d="M7 11h8M7 14h8M7 17h5" stroke="#fff" stroke-width="1.5"/>
+      </svg>
+      <b>Penn Plan Archive</b>
+    </div>
+    <p class="scope">Campus plans, 1948 to 2018</p>
+    <div class="group">Recorded questions</div>
+    <div id="nav"></div>
+    <p class="foot">Every answer here was produced once by the real pipeline and saved. Nothing runs when you click.</p>
+  </nav>
+
+  <div class="main">
+    <div class="bar">
+      <span><span class="pill flat">Recorded demo</span> <span class="long">&nbsp;No model is running on this page.</span></span>
+      <a href="https://github.com/zyang91/ai-sustainbility-final">Source on GitHub</a>
+    </div>
+    <main class="sheet" id="sheet">
+      <noscript><h1>Penn Plan Archive: recorded demo</h1><p>This page needs JavaScript to show the recorded answers.</p></noscript>
+    </main>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  var D = window.DEMO, sheet = document.getElementById('sheet'), nav = document.getElementById('nav');
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+  var timer = null, current = 0, SHOWN = 6;
+
+  // "[2]", "[2, 5]" -> buttons that point at a source
+  function refs(html, n) {
+    // also the looser forms a small model writes: "[8, p. 42]" -> chip 8, then "(p. 42)"
+    return html.replace(/\[\s*(\d+(?:\s*,\s*\d+)*)\s*((?:,[^\]]*)?)\]/g, function (all, group, tail) {
+      var nums = group.split(',').map(function (x) { return parseInt(x, 10); });
+      if (nums.some(function (x) { return x < 1 || x > n; })) return all;
+      tail = tail.replace(/^,\s*/, '').replace(/^\((.*)\)$/, '$1');
+      return nums.map(function (x) { return '<button class="ref" data-n="' + x + '" aria-label="Source ' + x + '">' + x + '</button>'; }).join('')
+        + (tail ? ' (' + tail + ')' : '');
+    });
+  }
+  function answerHtml(text, n) {
+    var out = [], list = null;
+    text.split(/\n+/).forEach(function (line) {
+      line = line.trim();
+      if (!line) return;
+      var item = line.match(/^(?:[*•-]|\d+\.)\s+(.*)$/);
+      if (item) { (list = list || []).push('<li>' + refs(esc(item[1]), n) + '</li>'); return; }
+      if (list) { out.push('<ul>' + list.join('') + '</ul>'); list = null; }
+      out.push('<p>' + refs(esc(line), n) + '</p>');
+    });
+    if (list) out.push('<ul>' + list.join('') + '</ul>');
+    return out.join('');
+  }
+  function pages(s) { return s.page_start === s.page_end ? 'p. ' + s.page_start : 'pp. ' + s.page_start + '–' + s.page_end; }
+
+  // every plan year in the archive on a time axis; the ones this answer used are marked
+  function timeline(run, W) {
+    var x = function (y) { return 12 + (y - 1945) / (2020 - 1945) * (W - 24); };
+    var cited = {}, seen = {}, gap = W < 520 ? 44 : 34;
+    run.sources.forEach(function (s) { (run.cited.indexOf(s.n) >= 0 ? cited : seen)[s.year] = 1; });
+    var s = '<line x1="0" y1="22" x2="' + W + '" y2="22" stroke="#e5e5e5"/>', taken = [];
+    [1950, 1960, 1970, 1980, 1990, 2000, 2010, 2020].forEach(function (y) {
+      s += '<line x1="' + x(y) + '" y1="18" x2="' + x(y) + '" y2="26" stroke="#d6d8da"/>';
+    });
+    var free = function (cx) { return taken.every(function (t) { return Math.abs(t - cx) > gap; }); };
+    var label = function (y, on) {
+      var cx = x(y);
+      if (!free(cx)) return;
+      taken.push(cx);
+      s += '<text class="' + (on ? 'on' : '') + '" x="' + cx + '" y="50" text-anchor="middle">' + y + '</text>';
+    };
+    D.years.forEach(function (y) {
+      var on = cited[y], half = !on && seen[y], cx = x(y);
+      s += '<circle cx="' + cx + '" cy="22" r="' + (on || half ? 6 : 4) + '" fill="' + (on ? '#1d4f91' : half ? '#fff' : '#cdced1') + '"'
+         + (half ? ' stroke="#1d4f91" stroke-width="1.5"' : '') + '><title>' + y + (on ? ': cited' : half ? ': retrieved, not cited' : ': not used') + '</title></circle>';
+    });
+    // the years the answer cites get their labels first, then the rest where there is room
+    D.years.forEach(function (y) { if (cited[y]) label(y, true); });
+    D.years.forEach(function (y) { if (!cited[y]) label(y, false); });
+    return '<svg width="' + W + '" height="60" viewBox="0 0 ' + W + ' 60" role="img" aria-label="Plan years used by this answer">' + s + '</svg>';
+  }
+  function drawTimeline() {
+    var el = document.getElementById('axis');
+    if (el) el.innerHTML = timeline(D.runs[current], Math.max(240, Math.floor(el.clientWidth)));
+  }
+
+  function sourceItem(s, isCited, open) {
+    return '<div class="item' + (isCited ? '' : ' uncited') + '" id="src-' + s.n + '">'
+      + '<button aria-expanded="' + (open ? 'true' : 'false') + '" aria-controls="txt-' + s.n + '">'
+      + '<span class="n">' + s.n + '</span><span class="t">' + esc(s.short) + '</span><span class="yr">' + s.year + '</span>'
+      + '<span class="m">' + pages(s) + ' · ' + (s.status === 'draft' ? 'draft' : 'published plan')
+      + (s.kind === 'table' ? ' · table' : '') + (s.section && s.kind !== 'table' ? ' · ' + esc(s.section.slice(0, 48)) : '') + '</span></button>'
+      + '<p class="passage' + (s.kind === 'table' ? ' table' : '') + '" id="txt-' + s.n + '"' + (open ? '' : ' hidden') + '>' + esc(s.text) + '</p></div>';
+  }
+
+  function render(i, play) {
+    clearInterval(timer);
+    current = i;
+    var run = D.runs[i], n = run.sources.length;
+    var citedSrc = run.sources.filter(function (s) { return run.cited.indexOf(s.n) >= 0; });
+    var rest = run.sources.filter(function (s) { return run.cited.indexOf(s.n) < 0; });
+    var planCount = Object.keys(citedSrc.reduce(function (a, s) { a[s.short + s.year] = 1; return a; }, {})).length;
+    var verdict = { ok: ['ok', 'Matches the sources'], partial: ['warn', 'Partly supported'], bad: ['bad', 'Contains an error'] }[run.check];
+    var first = citedSrc.concat(rest), shown = first.slice(0, Math.max(SHOWN, citedSrc.length)), hidden = first.slice(shown.length);
+
+    sheet.innerHTML =
+      '<div class="pick"><label for="pick">Recorded question</label><select id="pick">'
+      + D.runs.map(function (r, k) { return '<option value="' + k + '"' + (k === i ? ' selected' : '') + '>' + esc(r.question) + '</option>'; }).join('') + '</select></div>'
+      + '<div class="head"><div><h1>' + esc(run.question) + '</h1>'
+      + '<p class="sub">Recorded ' + esc(D.recorded) + ' with ' + esc(D.model) + ' · ' + n + ' passages retrieved, ' + run.cited.length + ' cited'
+      + (planCount ? ' from ' + planCount + (planCount === 1 ? ' plan' : ' plans') : '') + '</p></div>'
+      + '<div class="actions"><button class="btn primary" id="play">Replay the answer</button></div></div>'
+      + '<div class="check"><span class="pill ' + verdict[0] + '">' + verdict[1] + '</span><p>' + esc(run.note) + '</p></div>'
+      + '<section class="years"><header><h2>Plans this answer drew on</h2><div class="legend">'
+      + '<span class="cited"><i></i>Cited</span><span class="seen"><i></i>Retrieved, not cited</span><span class="none"><i></i>Not used</span></div></header>'
+      + '<div class="axis" id="axis"></div></section>'
+      + '<div class="cols"><section><h2 class="sec">Answer</h2><ul class="steps">'
+      + run.steps.map(function (s) {
+          return '<li>Searched <b>' + esc(s.query) + '</b>' + (s.year_from || s.year_to ? ', ' + (s.year_from || D.years[0]) + ' to ' + (s.year_to || D.years[D.years.length - 1]) : '')
+               + (s.compare ? ', the best passages from every plan in range' : '') + '</li>'; }).join('')
+      + '</ul><div class="answer" id="answer" aria-live="polite"></div></section>'
+      + '<aside class="src" aria-label="Sources"><header><h2>Sources</h2><span>' + run.cited.length + ' cited of ' + n + '</span></header>'
+      + (n ? shown.map(function (s) { return sourceItem(s, run.cited.indexOf(s.n) >= 0, false); }).join('')
+           + (hidden.length ? '<div id="rest" hidden>' + hidden.map(function (s) { return sourceItem(s, false, false); }).join('') + '</div>'
+              + '<button class="more" id="more" aria-expanded="false">Show ' + hidden.length + ' more retrieved passages</button>' : '')
+         : '<div class="item"><p class="passage" style="padding:12px 16px 14px">No passage was cited: the search found nothing about this.</p></div>')
+      + '</aside></div>'
+      + '<p class="note">The passages are OCR text from the scanned plans, typos included. Cited passages are shown in full; the others are shortened. '
+      + 'The check line above was written by a person who compared this answer with its sources.</p>';
+
+    drawTimeline();
+    if (citedSrc.length) openSource(citedSrc[0].n, false);
+    var box = document.getElementById('answer'), full = answerHtml(run.answer, n);
+    if (play && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var words = run.answer.split(/(\s+)/), k = 0;
+      box.classList.add('caret');
+      timer = setInterval(function () {
+        k += 3;
+        if (k >= words.length) { clearInterval(timer); box.classList.remove('caret'); box.innerHTML = full; return; }
+        box.innerHTML = answerHtml(words.slice(0, k).join(''), n);
+      }, 28);
+    } else { box.innerHTML = full; }
+
+    Array.prototype.forEach.call(nav.children, function (b, k) { b.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+    if (location.hash !== '#' + run.id) history.replaceState(null, '', '#' + run.id);
+    document.title = run.question + ' · Penn Plan Archive demo';
+  }
+
+  function openSource(num, scroll) {
+    var rest = document.getElementById('rest'), el = document.getElementById('src-' + num);
+    if (!el) return;
+    if (rest && rest.contains(el)) { rest.hidden = false; var m = document.getElementById('more'); if (m) m.remove(); }
+    Array.prototype.forEach.call(document.querySelectorAll('.item.hot, .ref.hot'), function (x) { x.classList.remove('hot'); });
+    el.classList.add('hot');
+    Array.prototype.forEach.call(document.querySelectorAll('.ref[data-n="' + num + '"]'), function (x) { x.classList.add('hot'); });
+    el.querySelector('button').setAttribute('aria-expanded', 'true');
+    el.querySelector('.passage').hidden = false;
+    if (scroll) el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+
+  sheet.addEventListener('click', function (e) {
+    var ref = e.target.closest('.ref'), head = e.target.closest('.item > button');
+    if (ref) return openSource(ref.dataset.n, true);
+    if (head) {
+      var p = head.parentNode.querySelector('.passage'), open = p.hidden;
+      if (open) openSource(head.parentNode.id.slice(4), false);
+      else { p.hidden = true; head.setAttribute('aria-expanded', 'false'); head.parentNode.classList.remove('hot'); }
+      return;
+    }
+    if (e.target.id === 'more') { document.getElementById('rest').hidden = false; e.target.remove(); }
+    if (e.target.id === 'play') render(current, true);
+  });
+  sheet.addEventListener('change', function (e) { if (e.target.id === 'pick') render(+e.target.value, false); });
+
+  nav.innerHTML = D.runs.map(function (r, k) {
+    return '<button class="q" data-k="' + k + '">' + esc(r.question) + '<small>' + esc(r.kind) + '</small></button>'; }).join('');
+  nav.addEventListener('click', function (e) { var b = e.target.closest('.q'); if (b) { render(+b.dataset.k, false); scrollTo(0, 0); } });
+
+  addEventListener('resize', drawTimeline);
+  addEventListener('hashchange', function () {
+    var k = D.runs.findIndex(function (r) { return '#' + r.id === location.hash; });
+    if (k >= 0 && k !== current) render(k, false);
+  });
+  var start = D.runs.findIndex(function (r) { return '#' + r.id === location.hash; });
+  render(start < 0 ? 0 : start, false);
+})();
+</script>
+</body>
+</html>

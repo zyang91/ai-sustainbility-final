@@ -17,6 +17,7 @@ SAMPLES_CSV = ANNOTATION / "samples.csv"
 SAMPLE_LINES = ANNOTATION / "sample_lines.json"   # line boxes only, no text
 TRANSCRIPTIONS = ANNOTATION / "transcriptions.jsonl"  # append-only human log
 GROUND_TRUTH_CSV = ANNOTATION / "ground_truth.csv"
+PAGE_CHECKS = ANNOTATION / "page_checks.jsonl"    # append-only page review log
 
 DPI = 200
 SEED = 20261114

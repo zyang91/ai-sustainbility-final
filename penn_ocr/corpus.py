@@ -7,9 +7,17 @@ from the PDF's own text layer, no OCR.
 
     python -m penn_ocr.corpus
 
+Page verdicts from the page review app (annotation/page_checks.jsonl) are
+applied: "keep" restores text the layout model filed under a figure, "drop"
+removes a page that holds only noise.
+
 Outputs in work/corpus/:
-  paragraphs.jsonl   one record per text block: doc_id, year, title, status,
-                     source, page, block, label, text, lines, confidence
+  paragraphs.jsonl   one record per text block: doc_id, report, duplicate_of,
+                     year, title, status,
+                     source, page, block, prose, fluency, label, text, lines, confidence
+                     (`prose` marks running sentences; analysis uses only those.
+                     `fluency` is the language-model score from
+                     `penn_ocr.fluency`, recorded but not used to filter)
   <doc_id>.txt       the same text as a readable file with page markers
   coverage.csv       pages expected / present, characters, mean confidence
 """
@@ -19,11 +27,17 @@ import re
 
 import pymupdf
 
-from . import documents, engines
+from . import documents, engines, fluency, pagecheck
 from .config import CORPUS, DATA, PAGE_OCR
 
 # Layout labels whose text is not running prose and would pollute the corpus.
 SKIP_LABELS = {"image", "chart", "seal", "formula", "header_image", "footer_image"}
+# Labels that can hold running prose. Titles, headers, page numbers, tables,
+# contents lists and captions are kept in paragraphs.jsonl but are not prose.
+PROSE_LABELS = {"text", "abstract", "footnote", "reference", "algorithm", "unassigned", "image"}
+PROSE_MIN_WORDS = 8
+PROSE_MIN_WORDS_ITEM = 4     # a short list item that ends like a sentence
+PROSE_MIN_CONFIDENCE = 0.8
 WIDE = 0.6          # a block wider than this share of the page spans all columns
 
 
@@ -36,6 +50,25 @@ def join_lines(lines: list[str]) -> str:
         else:
             out = f"{out} {ln}" if out else ln
     return out
+
+
+def is_prose(para: dict) -> bool:
+    """True for a block of running sentences, the input to semantic analysis.
+
+    Leaves out what is left on a scanned plan besides its prose: map and
+    legend labels (few words, or all capitals), tables of figures, running
+    headers, handwriting and stray marks (low recognition confidence).
+    """
+    text = para["text"].strip()
+    letters = sum(c.isalpha() for c in text)
+    words = len(re.findall(r"[A-Za-z][A-Za-z'\-]+", text))
+    # "(d) Quarters for junior faculty members." is a list item, not a label
+    enough = words >= PROSE_MIN_WORDS or (words >= PROSE_MIN_WORDS_ITEM and text[-1:] in ".;:")
+    if para["label"] not in PROSE_LABELS or not enough:
+        return False
+    if letters < 0.7 * len(text.replace(" ", "")) or sum(c.islower() for c in text) < 0.6 * letters:
+        return False
+    return para["confidence"] is None or para["confidence"] >= PROSE_MIN_CONFIDENCE
 
 
 def order_blocks(blocks: list[dict], width: int) -> list[dict]:
@@ -60,8 +93,8 @@ def order_blocks(blocks: list[dict], width: int) -> list[dict]:
     return out
 
 
-def scan_page(page: dict) -> list[dict]:
-    """Paragraph records for one OCR'd page."""
+def assign(page: dict) -> list[dict]:
+    """Layout blocks of one OCR'd page, each with the text lines that fall in it."""
     blocks = [dict(b, lines=[]) for b in page["blocks"]]
     loose = []
     for ln in page["lines"]:
@@ -76,8 +109,17 @@ def scan_page(page: dict) -> list[dict]:
         box = [min(l["box"][0] for l in row), min(l["box"][1] for l in row),
                max(l["box"][2] for l in row), max(l["box"][3] for l in row)]
         blocks.append(dict(label="unassigned", box=box, lines=row))
+    return [b for b in blocks if b["lines"]]
+
+
+def scan_page(page: dict, keep_all: bool = False) -> list[dict]:
+    """Paragraph records for one OCR'd page.
+
+    `keep_all`: also keep text inside figure-type blocks. Set for pages a
+    person marked as body text after the layout model called them an image.
+    """
     out = []
-    for b in order_blocks([b for b in blocks if b["lines"] and b["label"] not in SKIP_LABELS],
+    for b in order_blocks([b for b in assign(page) if keep_all or b["label"] not in SKIP_LABELS],
                           page["width"]):
         rows = [" ".join(l["text"] for l in r) for r in engines.reading_order(b["lines"])]
         text = join_lines(rows)
@@ -113,11 +155,11 @@ def pdf_page(page) -> list[dict]:
 
 def main():
     CORPUS.mkdir(parents=True, exist_ok=True)
-    coverage = []
+    coverage, verdicts, scores = [], pagecheck.verdicts(), fluency.load()
     with open(CORPUS / "paragraphs.jsonl", "w") as jl:
         for d in documents.load():
             pages = range(d["first_content_page"], d["n_pages"] + 1)
-            got, chars, confs, txt = 0, 0, [], []
+            got, chars, prose_chars, confs, txt = 0, 0, 0, [], []
             pdf = pymupdf.open(DATA / d["path"]) if d["source"] != "scan" else None
             for p in pages:
                 if pdf is not None:
@@ -126,30 +168,39 @@ def main():
                     f = PAGE_OCR / d["doc_id"] / f"p{p:04d}.json"
                     if not f.exists():
                         continue
-                    paras = scan_page(json.loads(f.read_text()))
+                    verdict = verdicts.get((d["doc_id"], p))
+                    paras = [] if verdict == "drop" else \
+                        scan_page(json.loads(f.read_text()), keep_all=verdict == "keep")
                 got += 1
                 txt.append(f"\n===== page {p} =====\n")
                 for i, para in enumerate(paras):
                     jl.write(json.dumps(dict(
-                        doc_id=d["doc_id"], year=d["year"], title=d["title"], status=d["status"],
-                        source="pdf_text" if pdf is not None else "ocr", page=p, block=i, **para),
+                        doc_id=d["doc_id"], report=d["report"], duplicate_of=d["duplicate_of"],
+                        year=d["year"], title=d["title"], status=d["status"],
+                        source="pdf_text" if pdf is not None else "ocr", page=p, block=i,
+                        prose=is_prose(para), fluency=scores.get(fluency.key(para["text"])),
+                        **para),
                         ensure_ascii=False) + "\n")
                     txt.append(para["text"] + "\n")
                     chars += len(para["text"])
+                    prose_chars += len(para["text"]) if is_prose(para) else 0
                     if para["confidence"] is not None:
                         confs.append(para["confidence"])
             if pdf is not None:
                 pdf.close()
             (CORPUS / f"{d['doc_id']}.txt").write_text("\n".join(txt))
-            coverage.append(dict(doc_id=d["doc_id"], year=d["year"], source=d["source"],
+            coverage.append(dict(doc_id=d["doc_id"], report=d["report"],
+                                 duplicate_of=d["duplicate_of"], year=d["year"], source=d["source"],
                                  pages_expected=len(pages), pages_done=got, characters=chars,
+                                 prose_characters=prose_chars,
                                  mean_confidence=round(sum(confs) / len(confs), 4) if confs else ""))
     with open(CORPUS / "coverage.csv", "w", newline="") as f:
         w = csv.DictWriter(f, list(coverage[0]))
         w.writeheader()
         w.writerows(coverage)
     done, total = sum(c["pages_done"] for c in coverage), sum(c["pages_expected"] for c in coverage)
-    print(f"{done} of {total} pages, {sum(c['characters'] for c in coverage):,} characters -> {CORPUS}")
+    print(f"{done} of {total} pages, {sum(c['characters'] for c in coverage):,} characters "
+          f"({sum(c['prose_characters'] for c in coverage):,} in prose blocks) -> {CORPUS}")
     for c in coverage:
         if c["pages_done"] < c["pages_expected"]:
             print(f"  incomplete: {c['doc_id']} {c['pages_done']}/{c['pages_expected']}")
