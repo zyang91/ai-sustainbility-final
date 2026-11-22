@@ -22,3 +22,6 @@ chromadb
 requests
 # optional: fluency score recorded by penn_ocr.fluency
 transformers
+# Vision 1.5: figures (scikit-learn comes with sentence-transformers)
+matplotlib
+scikit-learn

@@ -1,0 +1,96 @@
+{
+ "note": "Reading check of theme assignment: 5 passages per theme drawn with seed 2026 after the themes were revised (work/semantic/validation_sample.json). 1 = the assigned theme is a main subject of the passage; for Other, 1 = no theme fits. Judged by one reader.",
+ "judgements": {
+  "Parking and traffic": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "Campus expansion and land": [
+   1,
+   1,
+   0,
+   0,
+   1
+  ],
+  "Land use and density": [
+   1,
+   0,
+   1,
+   1,
+   0
+  ],
+  "Pedestrian circulation": [
+   0,
+   1,
+   1,
+   1,
+   1
+  ],
+  "Open space and landscape": [
+   0,
+   1,
+   1,
+   1,
+   1
+  ],
+  "Campus design and character": [
+   0,
+   1,
+   0,
+   0,
+   0
+  ],
+  "Athletics and recreation": [
+   1,
+   1,
+   1,
+   1,
+   0
+  ],
+  "Academic facilities": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "Student housing": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "Neighborhood and city": [
+   0,
+   1,
+   0,
+   1,
+   1
+  ],
+  "Planning process": [
+   1,
+   0,
+   1,
+   1,
+   1
+  ],
+  "Sustainability and energy": [
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "Other": [
+   1,
+   1,
+   0,
+   1,
+   0
+  ]
+ }
+}

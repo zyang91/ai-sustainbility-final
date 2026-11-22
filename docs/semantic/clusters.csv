@@ -1,0 +1,13 @@
+cluster,passages,words,main_themes,1948,1960s,Late 1970s,1980s,1990s,2006-2018
+0,105,"pavilion, advanced, commons, wing, gsf, technology, labs, innovation",Academic facilities 28; Campus expansion and land 18,0,0,0,0.005,0.057,0.327
+1,229,"recognizes, committee, trustees, projected, statement, guide, maps, accordance",Campus design and character 65; Planning process 46,0.28,0.434,0.16,0.094,0.126,0.043
+2,223,"stores, annex, restaurants, gimbel, gsf, temporary, corners, parcel",Campus design and character 97; Land use and density 43,0.28,0.046,0.145,0.164,0.044,0.107
+3,105,"supply, garages, automobile, structured, modes, cars, personnel, commuter",Parking and traffic 56; Pedestrian circulation 22,0.04,0.145,0.071,0.05,0.088,0.025
+4,80,"establishments, employees, goods, harvard, restaurants, sector, eating, stores",Neighborhood and city 46; Land use and density 18,0,0.013,0.015,0.083,0.057,0.004
+5,168,"deck, septa, highline, amtrak, bridges, connectivity, riverfront, framework",Pedestrian circulation 33; Campus design and character 33,0,0.046,0.052,0.035,0.101,0.359
+6,156,"ought, grid, boundary, style, land-use, color, furness, trim",Campus design and character 108; Campus expansion and land 14,0,0.026,0.123,0.076,0.296,0.025
+7,205,"moore, face, towne, wall, steps, leads, stairs, porch",Campus design and character 102; Pedestrian circulation 64,0.16,0.02,0.077,0.196,0.107,0.025
+8,154,"committee, vice, commission, trustees, cdpc, senior, federal, corporation",Neighborhood and city 43; Campus expansion and land 26,0.2,0.191,0.126,0.067,0.069,0.06
+9,114,"courses, towne, computer, assigned, moore, target, utilization, projected",Academic facilities 55; Land use and density 32,0,0.046,0.006,0.138,0,0
+10,85,"tennis, athletics, intercollegiate, track, skating, training, teams, bower",Athletics and recreation 70; Campus design and character 5,0.04,0.033,0.006,0.085,0.031,0.025
+11,80,"species, canopy, groves, shrubs, mature, plazas, landscapes, greens",Open space and landscape 57; Campus design and character 10,0,0,0.218,0.007,0.025,0
