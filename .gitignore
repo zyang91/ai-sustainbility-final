@@ -220,6 +220,8 @@ __marimo__/
 .streamlit/secrets.toml
 
 data/
+# the deck's numbers, exported from the pipeline (slides/export_data.py)
+!slides/src/data/
 
 .DS_Store
 # Derived images, model outputs and the PaddleOCR training checkout
